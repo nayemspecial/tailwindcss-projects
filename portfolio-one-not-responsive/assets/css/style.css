@@ -1,0 +1,7 @@
+#check-box:checked ~ .hamburger-dropdown {
+    max-height: 500px;
+}
+
+#check-box:checked ~ label #hamburger-icon {
+    content: url('../images/cross.png');
+}
