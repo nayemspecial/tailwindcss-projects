@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Solutions - Responsive Landing Page</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS 4 CDN (Latest) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- jQuery Plugins -->
+    <!-- CounterUp -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+    
+    <!-- Slick Slider -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': '#1E3A8A',
+                        'secondary-blue': '#3B82F6',
+                        'accent-orange': '#F59E0B',
+                        'background': '#FFFFFF',
+                        'light-gray': '#F3F4F6',
+                        'text-dark': '#111827',
+                        'text-muted': '#6B7280',
+                    },
+                    fontFamily: {
+                        'sen': ['Sen', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        '4xl': '2rem',
+                        '5xl': '2.5rem',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Sen', sans-serif;
+        }
+        
+        .hero-image-mask {
+            clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-image-mask {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+            }
+        }
+        
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .gradient-overlay {
+            background: linear-gradient(to right, rgba(30, 58, 138, 0.9), rgba(59, 130, 246, 0.7));
+        }
+        
+        /* Magnific Popup Video Fix */
+        .mfp-iframe-holder .mfp-content {
+            max-width: 900px;
+        }
+    </style>
+</head>
+<body class="bg-background text-text-dark">
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white shadow-md py-4">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-secondary-blue rounded-xl flex items-center justify-center">
+                        <i class="fas fa-cube text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-sen font-bold text-primary-blue">BizSol</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-text-dark hover:text-secondary-blue font-medium transition">Home</a>
+                    <a href="#features" class="text-text-dark hover:text-secondary-blue font-medium transition">Features</a>
+                    <a href="#statistics" class="text-text-dark hover:text-secondary-blue font-medium transition">Statistics</a>
+                    <a href="#testimonials" class="text-text-dark hover:text-secondary-blue font-medium transition">Testimonials</a>
+                    <a href="#clients" class="text-text-dark hover:text-secondary-blue font-medium transition">Clients</a>
+                    <a href="#contact" class="text-text-dark hover:text-secondary-blue font-medium transition">Contact</a>
+                </div>
+                
+                <!-- Right Side: Search and Button -->
+                <div class="flex items-center space-x-4">
+                    <button id="searchBtn" class="text-text-muted hover:text-secondary-blue">
+                        <i class="fas fa-search text-xl"></i>
+                    </button>
+                    <button class="bg-accent-orange text-white px-6 py-2 rounded-lg font-medium hover:bg-orange-600 transition hidden md:block">
+                        Get Started
+                    </button>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button id="mobileMenuBtn" class="md:hidden text-text-dark">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="#home" class="text-text-dark hover:text-secondary-blue font-medium transition">Home</a>
+                    <a href="#features" class="text-text-dark hover:text-secondary-blue font-medium transition">Features</a>
+                    <a href="#statistics" class="text-text-dark hover:text-secondary-blue font-medium transition">Statistics</a>
+                    <a href="#testimonials" class="text-text-dark hover:text-secondary-blue font-medium transition">Testimonials</a>
+                    <a href="#clients" class="text-text-dark hover:text-secondary-blue font-medium transition">Clients</a>
+                    <a href="#contact" class="text-text-dark hover:text-secondary-blue font-medium transition">Contact</a>
+                    <button class="bg-accent-orange text-white px-6 py-2 rounded-lg font-medium hover:bg-orange-600 transition w-full mt-2">
+                        Get Started
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Search Box -->
+            <div id="searchBox" class="hidden mt-4">
+                <div class="relative">
+                    <input type="text" placeholder="Search..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary-blue">
+                    <button class="absolute right-3 top-3 text-text-muted">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="py-16 md:py-24 bg-light-gray">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <!-- Left: Text Content -->
+                <div data-aos="fade-right">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold font-sen tracking-tight text-primary-blue mb-6">
+                        Transform Your Business With <span class="text-accent-orange">Digital Solutions</span>
+                    </h1>
+                    <p class="text-lg text-text-muted mb-8">
+                        We provide cutting-edge digital solutions that help businesses grow exponentially. Our platform integrates all your needs in one place.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button class="bg-secondary-blue text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition shadow-lg">
+                            Start Free Trial
+                        </button>
+                        <button class="border border-secondary-blue text-secondary-blue px-8 py-3 rounded-lg font-medium hover:bg-secondary-blue hover:text-white transition">
+                            Watch Demo
+                        </button>
+                    </div>
+                    
+                    <!-- Floating Stats in Hero -->
+                    <div class="mt-12 flex flex-wrap gap-8">
+                        <div class="floating-element">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
+                                    <i class="fas fa-chart-line text-secondary-blue text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-2xl font-bold text-primary-blue">42%</p>
+                                    <p class="text-text-muted">Faster Growth</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="floating-element" style="animation-delay: 1s;">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
+                                    <i class="fas fa-users text-accent-orange text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-2xl font-bold text-primary-blue">73+</p>
+                                    <p class="text-text-muted">Happy Clients</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right: Image with Floating Elements -->
+                <div class="relative" data-aos="fade-left">
+                    <div class="relative">
+                        <!-- Main Image -->
+                        <div class="bg-gradient-to-r from-primary-blue to-secondary-blue rounded-4xl p-1">
+                            <div class="bg-white rounded-4xl overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                                     alt="Business person working on laptop" 
+                                     class="w-full h-auto hero-image-mask">
+                            </div>
+                        </div>
+                        
+                        <!-- Floating Elements -->
+                        <div class="absolute -top-6 -left-6 bg-white p-4 rounded-2xl shadow-xl floating-element">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-accent-orange rounded-xl flex items-center justify-center">
+                                    <i class="fas fa-trophy text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-primary-blue">Award 2023</p>
+                                    <p class="text-sm text-text-muted">Best Solution</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-xl floating-element" style="animation-delay: 2s;">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-secondary-blue rounded-xl flex items-center justify-center">
+                                    <i class="fas fa-shield-alt text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-primary-blue">100% Secure</p>
+                                    <p class="text-sm text-text-muted">Data Protection</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold font-sen text-primary-blue mb-4">Powerful Features</h2>
+                <p class="text-text-muted max-w-2xl mx-auto">Our platform offers everything you need to streamline operations, increase productivity, and drive growth.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature Card 1 -->
+                <div class="bg-light-gray p-8 rounded-3xl hover:shadow-xl transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-secondary-blue rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-pie text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-sen text-primary-blue mb-4">Advanced Analytics</h3>
+                    <p class="text-text-muted mb-6">Get detailed insights into your business performance with real-time analytics and customizable dashboards.</p>
+                    <a href="#" class="text-secondary-blue font-medium hover:text-primary-blue transition">Learn More →</a>
+                </div>
+                
+                <!-- Feature Card 2 -->
+                <div class="bg-light-gray p-8 rounded-3xl hover:shadow-xl transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-accent-orange rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-robot text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-sen text-primary-blue mb-4">AI Automation</h3>
+                    <p class="text-text-muted mb-6">Automate repetitive tasks with our AI-powered tools, freeing your team to focus on strategic work.</p>
+                    <a href="#" class="text-secondary-blue font-medium hover:text-primary-blue transition">Learn More →</a>
+                </div>
+                
+                <!-- Feature Card 3 -->
+                <div class="bg-light-gray p-8 rounded-3xl hover:shadow-xl transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-primary-blue rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-mobile-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-sen text-primary-blue mb-4">Mobile App</h3>
+                    <p class="text-text-muted mb-6">Access all features on the go with our fully-featured mobile app available for iOS and Android.</p>
+                    <a href="#" class="text-secondary-blue font-medium hover:text-primary-blue transition">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video/Action Section -->
+    <section class="py-20 bg-primary-blue relative overflow-hidden">
+        <div class="absolute inset-0 gradient-overlay"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center" data-aos="zoom-in">
+                <h2 class="text-3xl md:text-4xl font-bold font-sen text-white mb-6">See Our Platform in Action</h2>
+                <p class="text-white/80 max-w-2xl mx-auto mb-10">Watch this short demo to see how our platform can transform your business operations and drive results.</p>
+                
+                <!-- Video Play Button -->
+                <div class="flex justify-center">
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="video-popup">
+                        <div class="w-24 h-24 bg-accent-orange rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-play text-white text-3xl ml-2"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section id="statistics" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold font-sen text-primary-blue mb-4">Our Impact in Numbers</h2>
+                <p class="text-text-muted max-w-2xl mx-auto">We measure success by the results we deliver to our clients. Here's what we've achieved together.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Stat 1 -->
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-5xl font-bold font-sen text-primary-blue mb-4 counter">42</div>
+                    <div class="text-2xl font-bold text-accent-orange mb-2">%</div>
+                    <h3 class="text-xl font-bold text-text-dark mb-2">Average Growth</h3>
+                    <p class="text-text-muted">Clients see an average growth of 42% in their first year</p>
+                </div>
+                
+                <!-- Stat 2 -->
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-5xl font-bold font-sen text-primary-blue mb-4 counter">73</div>
+                    <div class="text-2xl font-bold text-accent-orange mb-2">+</div>
+                    <h3 class="text-xl font-bold text-text-dark mb-2">Happy Clients</h3>
+                    <p class="text-text-muted">Businesses worldwide trust our solutions</p>
+                </div>
+                
+                <!-- Stat 3 -->
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-5xl font-bold font-sen text-primary-blue mb-4 counter">987</div>
+                    <h3 class="text-xl font-bold text-text-dark mb-2">Projects Completed</h3>
+                    <p class="text-text-muted">Successful implementations across industries</p>
+                </div>
+                
+                <!-- Stat 4 -->
+                <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-5xl font-bold font-sen text-primary-blue mb-4 counter">24</div>
+                    <div class="text-2xl font-bold text-accent-orange mb-2">/7</div>
+                    <h3 class="text-xl font-bold text-text-dark mb-2">Support Available</h3>
+                    <p class="text-text-muted">Round-the-clock customer support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Slider -->
+    <section id="testimonials" class="py-20 bg-light-gray">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold font-sen text-primary-blue mb-4">What Our Clients Say</h2>
+                <p class="text-text-muted max-w-2xl mx-auto">Don't just take our word for it. Here's what some of our clients have to say about our solutions.</p>
+            </div>
+            
+            <div class="testimonial-slider" data-aos="fade-up">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-3xl mx-4">
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+                        <div class="text-center md:text-left">
+                            <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-secondary-blue mx-auto md:mx-0">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                                     alt="Sarah Johnson" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="text-accent-orange text-2xl mb-4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-xl italic text-text-dark mb-6">"The platform transformed how we handle customer data. Our team is now 60% more efficient and we've seen a 42% increase in customer satisfaction."</p>
+                            <div>
+                                <h4 class="text-xl font-bold font-sen text-primary-blue">Sarah Johnson</h4>
+                                <p class="text-text-muted">CEO, TechVision Inc.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-3xl mx-4">
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+                        <div class="text-center md:text-left">
+                            <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-secondary-blue mx-auto md:mx-0">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                                     alt="Michael Chen" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="text-accent-orange text-2xl mb-4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <p class="text-xl italic text-text-dark mb-6">"Implementation was seamless and the ROI was almost immediate. The analytics dashboard alone has helped us identify three new revenue streams."</p>
+                            <div>
+                                <h4 class="text-xl font-bold font-sen text-primary-blue">Michael Chen</h4>
+                                <p class="text-text-muted">Operations Director, Global Retail</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-3xl mx-4">
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+                        <div class="text-center md:text-left">
+                            <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-secondary-blue mx-auto md:mx-0">
+                                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                                     alt="Priya Sharma" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="text-accent-orange text-2xl mb-4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-xl italic text-text-dark mb-6">"The AI automation features have saved us hundreds of hours monthly. Our team can now focus on creative solutions instead of repetitive tasks."</p>
+                            <div>
+                                <h4 class="text-xl font-bold font-sen text-primary-blue">Priya Sharma</h4>
+                                <p class="text-text-muted">CTO, Innovate Labs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Logos -->
+    <section id="clients" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold font-sen text-primary-blue mb-4">Trusted by Industry Leaders</h2>
+                <p class="text-text-muted max-w-2xl mx-auto">We're proud to partner with some of the world's most innovative companies</p>
+            </div>
+            
+            <div class="flex flex-wrap justify-center items-center gap-12 grayscale hover:grayscale-0 transition-all">
+                <div class="w-40 h-16 flex items-center justify-center" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fab fa-atlassian text-6xl text-text-muted hover:text-primary-blue transition"></i>
+                </div>
+                <div class="w-40 h-16 flex items-center justify-center" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fab fa-slack text-6xl text-text-muted hover:text-primary-blue transition"></i>
+                </div>
+                <div class="w-40 h-16 flex items-center justify-center" data-aos="zoom-in" data-aos-delay="300">
+                    <i class="fab fa-spotify text-6xl text-text-muted hover:text-primary-blue transition"></i>
+                </div>
+                <div class="w-40 h-16 flex items-center justify-center" data-aos="zoom-in" data-aos-delay="400">
+                    <i class="fab fa-google text-6xl text-text-muted hover:text-primary-blue transition"></i>
+                </div>
+                <div class="w-40 h-16 flex items-center justify-center" data-aos="zoom-in" data-aos-delay="500">
+                    <i class="fab fa-amazon text-6xl text-text-muted hover:text-primary-blue transition"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary-blue text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center">
+                            <i class="fas fa-cube text-secondary-blue text-xl"></i>
+                        </div>
+                        <span class="text-2xl font-sen font-bold text-white">BizSol</span>
+                    </div>
+                    <p class="text-white/80 mb-6">We provide cutting-edge digital solutions that help businesses grow exponentially.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent-orange transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent-orange transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent-orange transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent-orange transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-bold font-sen mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-white/80 hover:text-accent-orange transition">Home</a></li>
+                        <li><a href="#features" class="text-white/80 hover:text-accent-orange transition">Features</a></li>
+                        <li><a href="#statistics" class="text-white/80 hover:text-accent-orange transition">Statistics</a></li>
+                        <li><a href="#testimonials" class="text-white/80 hover:text-accent-orange transition">Testimonials</a></li>
+                        <li><a href="#clients" class="text-white/80 hover:text-accent-orange transition">Clients</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Services -->
+                <div>
+                    <h3 class="text-xl font-bold font-sen mb-6">Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-white/80 hover:text-accent-orange transition">Business Analytics</a></li>
+                        <li><a href="#" class="text-white/80 hover:text-accent-orange transition">AI Automation</a></li>
+                        <li><a href="#" class="text-white/80 hover:text-accent-orange transition">Mobile Solutions</a></li>
+                        <li><a href="#" class="text-white/80 hover:text-accent-orange transition">Cloud Integration</a></li>
+                        <li><a href="#" class="text-white/80 hover:text-accent-orange transition">Data Security</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-xl font-bold font-sen mb-6">Contact Us</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-map-marker-alt text-accent-orange mt-1"></i>
+                            <span class="text-white/80">123 Business Street, Suite 100<br>New York, NY 10001</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-phone text-accent-orange"></i>
+                            <span class="text-white/80">+1 (555) 123-4567</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-envelope text-accent-orange"></i>
+                            <span class="text-white/80">info@bizsol.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/20 pt-8 text-center">
+                <p class="text-white/70">© 2023 BizSol. All rights reserved. | Designed with Tailwind CSS 4 & jQuery</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for jQuery Plugins -->
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+        
+        // Initialize Slick Slider for Testimonials
+        $(document).ready(function(){
+            $('.testimonial-slider').slick({
+                dots: true,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 1,
+                adaptiveHeight: true,
+                autoplay: true,
+                autoplaySpeed: 5000,
+                arrows: false
+            });
+            
+            // Initialize CounterUp
+            $('.counter').counterUp({
+                delay: 10,
+                time: 2000
+            });
+            
+            // Initialize Magnific Popup for Video
+            $('.video-popup').magnificPopup({
+                type: 'iframe',
+                iframe: {
+                    patterns: {
+                        youtube: {
+                            index: 'youtube.com/',
+                            id: 'v=',
+                            src: 'https://www.youtube.com/embed/%id%?autoplay=1'
+                        }
+                    }
+                }
+            });
+            
+            // Mobile Menu Toggle
+            $('#mobileMenuBtn').click(function() {
+                $('#mobileMenu').slideToggle();
+            });
+            
+            // Search Box Toggle
+            $('#searchBtn').click(function() {
+                $('#searchBox').slideToggle();
+            });
+            
+            // Smooth Scrolling for Anchor Links
+            $('a[href*="#"]').on('click', function(e) {
+                if (this.hash !== "") {
+                    e.preventDefault();
+                    const hash = this.hash;
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top - 80
+                    }, 800);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
