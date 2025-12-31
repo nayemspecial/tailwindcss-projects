@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlasicSaaS | Projukti Plus - Premium Web Development Services</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': '#1E3A8A',
+                        'secondary-blue': '#3B82F6',
+                        'accent-orange': '#F59E0B',
+                        'background': '#FFFFFF',
+                        'light-gray': '#F9FAFB',
+                        'text-dark': '#111827',
+                        'text-muted': '#6B7280',
+                        'dark-bg': '#0F172A',
+                        'gradient-start': '#1E3A8A',
+                        'gradient-mid': '#3B82F6',
+                        'gradient-end': '#8B5CF6',
+                    },
+                    fontFamily: {
+                        'bricolage': ['Bricolage Grotesque', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'gradient': 'gradient 8s ease infinite',
+                        'typing': 'typing 3.5s steps(40, end)',
+                        'blink-caret': 'blink-caret .75s step-end infinite',
+                        'spin-slow': 'spin 8s linear infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'shimmer': 'shimmer 2s infinite',
+                        'wave': 'wave 8s ease-in-out infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Styles & Visualizations */
+        body { font-family: 'Poppins', sans-serif; overflow-x: hidden; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Bricolage Grotesque', sans-serif; }
+        html { scroll-behavior: smooth; }
+
+        /* Animations */
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #F59E0B; } }
+        @keyframes shimmer {
+            0% { background-position: -200px 0; }
+            100% { background-position: 200px 0; }
+        }
+        @keyframes wave {
+            0% { transform: rotate(0deg); }
+            10% { transform: rotate(14deg); }
+            20% { transform: rotate(-8deg); }
+            30% { transform: rotate(14deg); }
+            40% { transform: rotate(-4deg); }
+            50% { transform: rotate(10deg); }
+            60% { transform: rotate(0deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        /* Hero Section */
+        .hero-gradient {
+            background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 50%, #F59E0B 100%);
+            background-size: 200% 200%;
+            animation: gradient 8s ease infinite;
+        }
+        .hero-bg-pattern {
+            position: absolute; inset: 0;
+            background-image: radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 20%),
+                              radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 20%);
+        }
+        .hero-image {
+            border-radius: 2rem; transform-style: preserve-3d; transform: rotateY(-10deg) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(30, 58, 138, 0.3); transition: transform 0.5s ease;
+        }
+        .hero-image:hover { transform: rotateY(0deg) rotateX(0deg) scale(1.02); }
+
+        /* Floating Badges */
+        .image-badge {
+            position: absolute; padding: 0.75rem 1.5rem; background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px); border-radius: 50px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            display: flex; align-items: center; gap: 0.75rem; z-index: 10; transition: transform 0.3s ease;
+        }
+        .image-badge:hover { transform: scale(1.1); }
+        .badge-1 { top: -1rem; right: 2rem; animation: float 4s ease-in-out infinite; }
+        .badge-2 { bottom: 2rem; left: -1rem; animation: float 4s ease-in-out infinite 1s; }
+        .badge-3 { top: 40%; right: -1.5rem; animation: float 4s ease-in-out infinite 2s; }
+        
+        .typing-text { display: inline-block; overflow: hidden; border-right: 3px solid #F59E0B; white-space: nowrap; animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite; }
+
+        /* Buttons */
+        .cta-button-primary {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F3F4F6 100%); color: #1E3A8A; padding: 1rem 2rem;
+            border-radius: 12px; font-weight: 600; font-size: 1.125rem; transition: all 0.3s;
+            display: inline-flex; align-items: center; gap: 0.75rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            position: relative; overflow: hidden;
+        }
+        .cta-button-primary::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.7s;
+        }
+        .cta-button-primary:hover::after { left: 100%; }
+        .cta-button-primary:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); }
+        
+        .cta-button-secondary {
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white; padding: 1rem 2rem; border-radius: 12px; font-weight: 600; font-size: 1.125rem; 
+            transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.75rem;
+        }
+        .cta-button-secondary:hover { background: rgba(255, 255, 255, 0.25); transform: translateY(-3px); }
+
+        /* Stats */
+        .stats-container { display: flex; gap: 3rem; margin-top: 3rem; padding: 2rem; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.2); transition: transform 0.3s ease; }
+        .stats-container:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.15); }
+        .stat-number { font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, #FFFFFF 0%, #F59E0B 100%); -webkit-background-clip: text; color: transparent; }
+
+        /* Cards Universal - Enhanced */
+        .universal-card { 
+            background: white; border-radius: 1.5rem; padding: 2rem; 
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); transition: all 0.4s ease; 
+            border: 1px solid #E5E7EB; position: relative; overflow: hidden;
+        }
+        .universal-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
+            background: linear-gradient(90deg, #1E3A8A, #3B82F6, #F59E0B);
+            transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+        }
+        .universal-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12); border-color: #3B82F6; }
+        .universal-card:hover::before { transform: scaleX(1); }
+        
+        /* Service Cards */
+        .service-icon { 
+            width: 4rem; height: 4rem; border-radius: 1rem; display: flex; 
+            align-items: center; justify-content: center; font-size: 1.5rem; 
+            margin-bottom: 1.5rem; transition: transform 0.3s; 
+            background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
+            color: white; box-shadow: 0 8px 16px rgba(30, 58, 138, 0.2);
+        }
+        .universal-card:hover .service-icon { transform: scale(1.1) rotate(5deg); }
+
+        /* Tech Stack Cards (Enhanced) */
+        .tech-card {
+            background: white; border-radius: 1rem; padding: 2rem 1rem; text-align: center;
+            border: 1px solid #F3F4F6; transition: all 0.4s ease;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            height: 100%; position: relative; overflow: hidden;
+        }
+        .tech-card::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, #1E3A8A, #3B82F6); transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        .tech-card:hover::after { transform: scaleX(1); }
+        .tech-card:hover { transform: translateY(-5px) scale(1.03); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: #3B82F6; }
+        .tech-icon-wrapper { 
+            height: 80px; display: flex; align-items: center; justify-content: center; 
+            margin-bottom: 1rem; transition: transform 0.3s ease;
+        }
+        .tech-card:hover .tech-icon-wrapper { transform: translateY(-5px); }
+        
+        /* Portfolio */
+        .portfolio-item { 
+            border-radius: 1.5rem; overflow: hidden; position: relative; cursor: pointer; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: all 0.4s ease;
+        }
+        .portfolio-item:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .portfolio-image { height: 280px; object-fit: cover; transition: transform 0.6s ease; width: 100%; }
+        .portfolio-item:hover .portfolio-image { transform: scale(1.1); }
+        .portfolio-overlay { 
+            background: linear-gradient(to top, rgba(30, 58, 138, 0.95), transparent); 
+            position: absolute; inset: 0; display: flex; flex-direction: column; 
+            justify-content: flex-end; padding: 2rem; opacity: 0; 
+            transition: all 0.4s ease; transform: translateY(20px); 
+        }
+        .portfolio-item:hover .portfolio-overlay { opacity: 1; transform: translateY(0); }
+
+        /* Process Steps (Enhanced) */
+        .process-card {
+            background: white; padding: 2rem; border-radius: 1.5rem; border: 1px solid #E5E7EB;
+            position: relative; transition: all 0.4s ease; height: 100%; text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .process-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.12); border-color: #F59E0B; }
+        .process-number {
+            width: 3.5rem; height: 3.5rem; background: linear-gradient(135deg, #3B82F6, #1E3A8A);
+            color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 1.25rem; font-weight: bold; position: absolute; top: -1.75rem; left: 50%; 
+            transform: translateX(-50%); border: 4px solid white; 
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3); transition: all 0.3s ease;
+        }
+        .process-card:hover .process-number { background: linear-gradient(135deg, #F59E0B, #F97316); }
+
+        /* Testimonials (Enhanced) */
+        .testimonial-modern {
+            background: white; border-radius: 1.5rem; padding: 3rem; margin: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #F3F4F6;
+            text-align: center; position: relative; overflow: hidden; transition: all 0.3s ease;
+        }
+        .testimonial-modern:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        .testimonial-modern::before {
+            content: '\f10d'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+            position: absolute; top: 1rem; left: 2rem; font-size: 4rem; color: #F3F4F6; z-index: 0;
+        }
+        .testimonial-content { position: relative; z-index: 1; }
+        .client-avatar { 
+            width: 5rem; height: 5rem; border-radius: 50%; object-fit: cover; 
+            border: 4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+            margin: 0 auto 1.5rem; transition: transform 0.3s ease;
+        }
+        .testimonial-modern:hover .client-avatar { transform: scale(1.05); }
+
+        /* FAQ (Enhanced) */
+        .faq-modern-item {
+            background: white; border: 1px solid #E5E7EB; border-radius: 1rem; overflow: hidden; 
+            transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+        .faq-modern-item:hover { border-color: #3B82F6; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.08); }
+        .faq-modern-header {
+            padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; 
+            align-items: center; font-weight: 600; font-family: 'Bricolage Grotesque', sans-serif; 
+            font-size: 1.1rem; transition: all 0.3s ease;
+        }
+        .faq-modern-header:hover { color: #3B82F6; background: #F9FAFB; }
+        .faq-modern-content { display: none; padding: 0 1.5rem 1.5rem; color: #6B7280; line-height: 1.6; }
+        .faq-modern-item.active { border-color: #3B82F6; box-shadow: 0 10px 25px rgba(59, 130, 246, 0.1); }
+        .faq-icon { transition: transform 0.3s ease; color: #3B82F6; }
+        .faq-modern-item.active .faq-icon { transform: rotate(180deg); }
+
+        /* CTA Section (Enhanced) */
+        .cta-deep-bg {
+            background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 50%, #0F172A 100%);
+            position: relative; overflow: hidden;
+        }
+        .cta-deep-bg::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            animation: wave 15s linear infinite;
+        }
+
+        /* Navbar Enhancement */
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
+            background: linear-gradient(90deg, #3B82F6, #F59E0B); transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(to bottom, #1E3A8A, #3B82F6); 
+            border-radius: 5px; transition: all 0.3s;
+        }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(to bottom, #1E3A8A, #F59E0B); }
+    </style>
+</head>
+<body class="bg-background text-text-dark">
+
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-lg py-4 transition-all duration-300">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-12 h-12 bg-gradient-to-r from-primary-blue to-secondary-blue rounded-2xl flex items-center justify-center transition-transform group-hover:rotate-12 duration-300 shadow-md group-hover:shadow-lg">
+                        <i class="fas fa-code text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bricolage font-bold text-primary-blue tracking-tight">Plasic<span class="text-accent-orange">SaaS</span></h1>
+                        <p class="text-xs text-text-muted hidden sm:block font-medium">by Projukti Plus</p>
+                    </div>
+                </a>
+                
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#home" class="text-text-dark hover:text-secondary-blue font-medium transition nav-link">Home</a>
+                    <a href="#services" class="text-text-dark hover:text-secondary-blue font-medium transition nav-link">Services</a>
+                    <a href="#process" class="text-text-dark hover:text-secondary-blue font-medium transition nav-link">Process</a>
+                    <a href="#portfolio" class="text-text-dark hover:text-secondary-blue font-medium transition nav-link">Portfolio</a>
+                    <a href="#testimonials" class="text-text-dark hover:text-secondary-blue font-medium transition nav-link">Testimonials</a>
+                    <a href="#contact" class="text-text-dark hover:text-secondary-blue font-medium transition nav-link">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="#contact" class="hidden md:inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary-blue to-secondary-blue text-white font-medium rounded-xl hover:shadow-xl transition-all duration-300 shadow-lg transform hover:-translate-y-1 hover:scale-105">
+                        <i class="fas fa-rocket mr-2"></i> Start Project
+                    </a>
+                    <button id="mobileMenuBtn" class="lg:hidden text-text-dark text-2xl hover:text-secondary-blue transition">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div id="mobileMenu" class="hidden lg:hidden mt-6 pb-4 border-t border-gray-200 pt-6">
+                <div class="flex flex-col space-y-4">
+                    <a href="#home" class="text-text-dark font-medium p-2 hover:text-secondary-blue hover:bg-primary-blue/5 rounded-lg transition">Home</a>
+                    <a href="#services" class="text-text-dark font-medium p-2 hover:text-secondary-blue hover:bg-primary-blue/5 rounded-lg transition">Services</a>
+                    <a href="#process" class="text-text-dark font-medium p-2 hover:text-secondary-blue hover:bg-primary-blue/5 rounded-lg transition">Process</a>
+                    <a href="#portfolio" class="text-text-dark font-medium p-2 hover:text-secondary-blue hover:bg-primary-blue/5 rounded-lg transition">Portfolio</a>
+                    <a href="#contact" class="text-text-dark font-medium p-2 hover:text-secondary-blue hover:bg-primary-blue/5 rounded-lg transition">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="relative min-h-screen flex items-center overflow-hidden hero-gradient">
+        <div class="hero-bg-pattern"></div>
+        
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute w-64 h-64 bg-white/10 rounded-full top-20 left-20 blur-3xl animate-pulse-slow"></div>
+            <div class="absolute w-96 h-96 bg-accent-orange/10 rounded-full bottom-20 right-20 blur-3xl animate-float"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 py-20 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left" data-aos="fade-right">
+                    <div class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-md border border-white/20 rounded-full text-white font-medium mb-6 animate-slide-up">
+                        <div class="w-2 h-2 bg-accent-orange rounded-full mr-2 animate-ping"></div>
+                        <span>Top Rated Web Development Agency</span>
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bricolage font-bold text-white leading-tight mb-6">
+                        Build Your Digital 
+                        <span class="block mt-2 h-20 md:h-24">
+                            <span class="typing-text text-accent-orange">Masterpiece</span>
+                        </span>
+                    </h1>
+                    
+                    <p class="text-lg md:text-xl text-gray-200 mb-8 md:mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        We transform complex business challenges into elegant web solutions. From SaaS platforms to enterprise applications, we deliver excellence with Laravel, Vue.js, React.js & WordPress.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start mb-8">
+                        <a href="#contact" class="cta-button-primary group">
+                            <i class="fas fa-calendar-check group-hover:rotate-12 transition-transform"></i> Start Free Consultation
+                        </a>
+                        <a href="#portfolio" class="cta-button-secondary group">
+                            <i class="fas fa-eye group-hover:scale-110 transition-transform"></i> View Our Work
+                        </a>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left" class="relative lg:block">
+                    <div class="hero-image-container relative perspective-1000">
+                        <div class="hero-image overflow-hidden bg-white/5 backdrop-blur-sm p-2 rounded-[2.5rem]">
+                            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                                 alt="Modern Web Development Dashboard" 
+                                 class="w-full h-auto rounded-[2rem] shadow-2xl">
+                        </div>
+                        <div class="image-badge badge-1">
+                            <div class="w-10 h-10 bg-accent-orange rounded-xl flex items-center justify-center shadow-lg"><i class="fas fa-rocket text-white"></i></div>
+                            <div><p class="font-bold text-primary-blue">Fast Delivery</p><p class="text-xs text-text-muted">30% Faster</p></div>
+                        </div>
+                        <div class="image-badge badge-2">
+                            <div class="w-10 h-10 bg-secondary-blue rounded-xl flex items-center justify-center shadow-lg"><i class="fas fa-shield-alt text-white"></i></div>
+                            <div><p class="font-bold text-primary-blue">Secure</p><p class="text-xs text-text-muted">Enterprise Grade</p></div>
+                        </div>
+                        <div class="image-badge badge-3 hidden lg:flex">
+                            <div class="w-10 h-10 bg-primary-blue rounded-xl flex items-center justify-center shadow-lg"><i class="fas fa-trophy text-white"></i></div>
+                            <div><p class="font-bold text-primary-blue">Award 2024</p><p class="text-xs text-text-muted">Best Agency</p></div>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-container mt-12" data-aos="fade-up" data-aos-delay="300">
+                        <div class="stat-item"><div class="stat-number counter">150</div><div class="stat-label text-white/90">Projects</div></div>
+                        <div class="stat-item"><div class="stat-number counter">98</div><div class="stat-label text-white/90">Satisfaction %</div></div>
+                        <div class="stat-item"><div class="stat-number counter">5</div><div class="stat-label text-white/90">Years Exp</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-light-gray/30 -skew-x-12 z-0 pointer-events-none"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block px-4 py-2 bg-primary-blue/10 text-primary-blue rounded-full font-medium mb-4">
+                    <i class="fas fa-cogs mr-2"></i> Our Services
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bricolage font-bold text-primary-blue mb-6">Professional Web Development</h2>
+                <p class="text-xl text-text-muted max-w-3xl mx-auto">End-to-end solutions tailored to your business needs.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="universal-card group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon bg-gradient-to-r from-primary-blue to-secondary-blue text-white shadow-lg"><i class="fas fa-laptop-code"></i></div>
+                    <h3 class="text-2xl font-bold text-primary-blue mb-4">Custom Web Apps</h3>
+                    <p class="text-text-muted mb-6">Tailor-made applications built with Laravel, Vue.js, and React.js for high performance.</p>
+                    <a href="#" class="text-secondary-blue font-bold hover:text-primary-blue inline-flex items-center group">
+                        Learn More <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+                
+                <div class="universal-card group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon bg-gradient-to-r from-secondary-blue to-accent-orange text-white shadow-lg"><i class="fab fa-wordpress"></i></div>
+                    <h3 class="text-2xl font-bold text-primary-blue mb-4">WordPress Dev</h3>
+                    <p class="text-text-muted mb-6">Custom themes, plugins, and Elementor widgets. We build fast, secure CMS solutions.</p>
+                    <a href="#" class="text-secondary-blue font-bold hover:text-primary-blue inline-flex items-center group">
+                        Learn More <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+                
+                <div class="universal-card group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon bg-gradient-to-r from-accent-orange to-primary-blue text-white shadow-lg"><i class="fas fa-cloud"></i></div>
+                    <h3 class="text-2xl font-bold text-primary-blue mb-4">SaaS Development</h3>
+                    <p class="text-text-muted mb-6">Complete SaaS platforms with subscription management, multi-tenancy, and analytics.</p>
+                    <a href="#" class="text-secondary-blue font-bold hover:text-primary-blue inline-flex items-center group">
+                        Learn More <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="py-24 bg-light-gray relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block px-4 py-2 bg-primary-blue/10 text-primary-blue rounded-full font-medium mb-4"><i class="fas fa-sitemap mr-2"></i> Our Process</span>
+                <h2 class="text-4xl md:text-5xl font-bricolage font-bold text-primary-blue mb-6">How We Work</h2>
+                <p class="text-xl text-text-muted max-w-3xl mx-auto">A systematic approach to delivering exceptional web solutions.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 pt-8">
+                <div class="process-card group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="process-number group-hover:bg-accent-orange transition-colors">01</div>
+                    <h3 class="text-xl font-bold text-primary-blue mt-6 mb-3">Discovery</h3>
+                    <p class="text-text-muted text-sm">We analyze requirements and create a detailed roadmap.</p>
+                </div>
+                
+                <div class="process-card group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="process-number group-hover:bg-accent-orange transition-colors">02</div>
+                    <h3 class="text-xl font-bold text-primary-blue mt-6 mb-3">Design</h3>
+                    <p class="text-text-muted text-sm">We create UI/UX designs and interactive prototypes.</p>
+                </div>
+                
+                <div class="process-card group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="process-number group-hover:bg-accent-orange transition-colors">03</div>
+                    <h3 class="text-xl font-bold text-primary-blue mt-6 mb-3">Develop</h3>
+                    <p class="text-text-muted text-sm">Clean coding using best practices and modern stacks.</p>
+                </div>
+                
+                <div class="process-card group" data-aos="fade-up" data-aos-delay="400">
+                    <div class="process-number group-hover:bg-accent-orange transition-colors">04</div>
+                    <h3 class="text-xl font-bold text-primary-blue mt-6 mb-3">Launch</h3>
+                    <p class="text-text-muted text-sm">Testing, deployment, and ongoing technical support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white relative">
+        <div class="absolute top-20 left-10 w-24 h-24 bg-blue-100 rounded-full blur-2xl opacity-50 animate-pulse"></div>
+        <div class="absolute bottom-20 right-10 w-32 h-32 bg-orange-100 rounded-full blur-2xl opacity-50 animate-pulse"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block px-4 py-2 bg-primary-blue/10 text-primary-blue rounded-full font-medium mb-4"><i class="fas fa-code mr-2"></i> Tech Stack</span>
+                <h2 class="text-4xl md:text-5xl font-bricolage font-bold text-primary-blue mb-6">Technologies We Master</h2>
+            </div>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
+                <div class="tech-card group" data-aos="zoom-in">
+                    <div class="tech-icon-wrapper">
+                        <i class="fab fa-laravel text-6xl text-red-500 drop-shadow-sm group-hover:animate-bounce-slow"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-primary-blue">Laravel</h4>
+                    <p class="text-text-muted text-xs">PHP Framework</p>
+                </div>
+                
+                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="tech-icon-wrapper">
+                        <i class="fab fa-vuejs text-6xl text-green-500 drop-shadow-sm group-hover:animate-bounce-slow"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-primary-blue">Vue.js</h4>
+                    <p class="text-text-muted text-xs">Progressive JS</p>
+                </div>
+                
+                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="tech-icon-wrapper">
+                        <i class="fab fa-react text-6xl text-blue-400 drop-shadow-sm group-hover:animate-spin-slow"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-primary-blue">React.js</h4>
+                    <p class="text-text-muted text-xs">UI Library</p>
+                </div>
+                
+                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="tech-icon-wrapper">
+                        <i class="fab fa-wordpress text-6xl text-blue-600 drop-shadow-sm group-hover:animate-bounce-slow"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-primary-blue">WordPress</h4>
+                    <p class="text-text-muted text-xs">CMS Platform</p>
+                </div>
+                
+                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="tech-icon-wrapper">
+                        <i class="fas fa-database text-6xl text-orange-500 drop-shadow-sm group-hover:animate-pulse"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-primary-blue">MySQL</h4>
+                    <p class="text-text-muted text-xs">Database</p>
+                </div>
+                
+                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="tech-icon-wrapper">
+                        <i class="fab fa-git-alt text-6xl text-orange-600 drop-shadow-sm group-hover:animate-bounce-slow"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-primary-blue">Git</h4>
+                    <p class="text-text-muted text-xs">Version Control</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-24 bg-light-gray">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block px-4 py-2 bg-primary-blue/10 text-primary-blue rounded-full font-medium mb-4"><i class="fas fa-briefcase mr-2"></i> Portfolio</span>
+                <h2 class="text-4xl md:text-5xl font-bricolage font-bold text-primary-blue mb-6">Featured Projects</h2>
+            </div>
+            
+            <div class="flex justify-center flex-wrap gap-3 mb-12" data-aos="fade-up">
+                <button class="px-6 py-2 bg-primary-blue text-white font-medium rounded-full transition-all portfolio-filter active hover:shadow-lg hover:scale-105" data-filter="all">All Projects</button>
+                <button class="px-6 py-2 bg-white border border-gray-200 text-primary-blue font-medium rounded-full transition-all portfolio-filter hover:shadow-lg hover:scale-105" data-filter="laravel">Laravel</button>
+                <button class="px-6 py-2 bg-white border border-gray-200 text-primary-blue font-medium rounded-full transition-all portfolio-filter hover:shadow-lg hover:scale-105" data-filter="vue">Vue.js</button>
+                <button class="px-6 py-2 bg-white border border-gray-200 text-primary-blue font-medium rounded-full transition-all portfolio-filter hover:shadow-lg hover:scale-105" data-filter="react">React.js</button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div class="portfolio-item laravel vue group" data-aos="zoom-in">
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-md h-full border border-gray-100 hover:shadow-xl transition-shadow">
+                        <div class="relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="TaskFlow" class="w-full h-56 object-cover portfolio-image">
+                            <div class="portfolio-overlay">
+                                <span class="px-4 py-1 bg-white/20 backdrop-blur text-white text-sm rounded-full mb-2 inline-block">Laravel + Vue</span>
+                                <h4 class="text-white font-bold text-xl">TaskFlow Pro</h4>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-primary-blue mb-2">TaskFlow Pro</h3>
+                            <p class="text-text-muted mb-4 line-clamp-2">Project management SaaS with team collaboration.</p>
+                            <span class="text-accent-orange font-bold text-sm">$50K+ Revenue</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item react group" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-md h-full border border-gray-100 hover:shadow-xl transition-shadow">
+                        <div class="relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Analytics" class="w-full h-56 object-cover portfolio-image">
+                            <div class="portfolio-overlay">
+                                <span class="px-4 py-1 bg-white/20 backdrop-blur text-white text-sm rounded-full mb-2 inline-block">React + Node</span>
+                                <h4 class="text-white font-bold text-xl">ShopSphere</h4>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-primary-blue mb-2">ShopSphere</h3>
+                            <p class="text-text-muted mb-4 line-clamp-2">E-commerce analytics dashboard.</p>
+                            <span class="text-green-500 font-bold text-sm">75% Growth</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item laravel group" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-md h-full border border-gray-100 hover:shadow-xl transition-shadow">
+                        <div class="relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Inventory" class="w-full h-56 object-cover portfolio-image">
+                            <div class="portfolio-overlay">
+                                <span class="px-4 py-1 bg-white/20 backdrop-blur text-white text-sm rounded-full mb-2 inline-block">Laravel</span>
+                                <h4 class="text-white font-bold text-xl">StockMaster</h4>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-primary-blue mb-2">StockMaster</h3>
+                            <p class="text-text-muted mb-4 line-clamp-2">Enterprise inventory tracking system.</p>
+                            <span class="text-primary-blue font-bold text-sm">500+ Users</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item wordpress group" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-md h-full border border-gray-100 hover:shadow-xl transition-shadow">
+                        <div class="relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Corporate" class="w-full h-56 object-cover portfolio-image">
+                            <div class="portfolio-overlay">
+                                <span class="px-4 py-1 bg-white/20 backdrop-blur text-white text-sm rounded-full mb-2 inline-block">WordPress</span>
+                                <h4 class="text-white font-bold text-xl">GlobalCorp</h4>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-primary-blue mb-2">GlobalCorp</h3>
+                            <p class="text-text-muted mb-4 line-clamp-2">Corporate website with Elementor.</p>
+                            <span class="text-accent-orange font-bold text-sm">#1 Ranking</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block px-4 py-2 bg-primary-blue/10 text-primary-blue rounded-full font-medium mb-4"><i class="fas fa-comments mr-2"></i> Testimonials</span>
+                <h2 class="text-4xl md:text-5xl font-bricolage font-bold text-primary-blue mb-6">What Our Clients Say</h2>
+            </div>
+            
+            <div class="testimonial-slider max-w-5xl mx-auto">
+                <div>
+                    <div class="testimonial-modern">
+                        <div class="testimonial-content">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Client" class="client-avatar">
+                            <p class="text-text-muted italic text-lg mb-6 leading-relaxed">"Projukti Plus transformed our outdated system into a modern SaaS platform. Their expertise in Laravel and Vue.js is exceptional. Productivity increased by 60%."</p>
+                            <h4 class="text-xl font-bold text-primary-blue">Sarah Johnson</h4>
+                            <p class="text-sm text-gray-500">CEO, TechVision Inc.</p>
+                            <div class="text-accent-orange mt-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="testimonial-modern">
+                        <div class="testimonial-content">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Client" class="client-avatar">
+                            <p class="text-text-muted italic text-lg mb-6 leading-relaxed">"The React.js dashboard they built for our e-commerce analytics is a game-changer. Real-time insights helped us optimize our operations immediately."</p>
+                            <h4 class="text-xl font-bold text-primary-blue">Michael Chen</h4>
+                            <p class="text-sm text-gray-500">COO, Global Retail</p>
+                            <div class="text-accent-orange mt-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="testimonial-modern">
+                        <div class="testimonial-content">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Client" class="client-avatar">
+                            <p class="text-text-muted italic text-lg mb-6 leading-relaxed">"Their WordPress team is outstanding. They delivered a custom Elementor site that is fast, secure, and easy for our team to manage."</p>
+                            <h4 class="text-xl font-bold text-primary-blue">Emily Davis</h4>
+                            <p class="text-sm text-gray-500">Marketing Lead</p>
+                            <div class="text-accent-orange mt-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-light-gray">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bricolage font-bold text-primary-blue mb-4">Frequently Asked Questions</h2>
+                <p class="text-text-muted">Answers to common questions about our web development services.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                    <div class="faq-modern-item active" data-aos="fade-up">
+                        <div class="faq-modern-header">How long does a project take? <i class="fas fa-chevron-down faq-icon"></i></div>
+                        <div class="faq-modern-content" style="display: block;">Timelines vary. A corporate site takes 2-4 weeks, while a custom SaaS platform can take 8-12 weeks depending on complexity.</div>
+                    </div>
+                    <div class="faq-modern-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="faq-modern-header">Do you offer support? <i class="fas fa-chevron-down faq-icon"></i></div>
+                        <div class="faq-modern-content">Yes! We provide 1 month of free support with every project to ensure smooth operation. Extended maintenance packages are available.</div>
+                    </div>
+                    <div class="faq-modern-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="faq-modern-header">What is your payment structure? <i class="fas fa-chevron-down faq-icon"></i></div>
+                        <div class="faq-modern-content">Typically, we work on a 40% upfront, 30% milestone, and 30% on completion basis. We are flexible for larger projects.</div>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="faq-modern-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="faq-modern-header">Which technologies do you use? <i class="fas fa-chevron-down faq-icon"></i></div>
+                        <div class="faq-modern-content">We specialize in the PHP ecosystem (Laravel, WordPress) and JavaScript ecosystem (Vue.js, React.js, Node.js) along with MySQL databases.</div>
+                    </div>
+                    <div class="faq-modern-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="faq-modern-header">Can you update my existing site? <i class="fas fa-chevron-down faq-icon"></i></div>
+                        <div class="faq-modern-content">Absolutely. We can audit your current website, optimize code, improve speed, or completely redesign it with modern tech.</div>
+                    </div>
+                    <div class="faq-modern-item" data-aos="fade-up" data-aos-delay="500">
+                        <div class="faq-modern-header">Will my site be mobile-friendly? <i class="fas fa-chevron-down faq-icon"></i></div>
+                        <div class="faq-modern-content">Yes, 100%. All our websites are developed with a "mobile-first" approach using responsive frameworks like Tailwind CSS.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 cta-deep-bg relative">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center max-w-3xl mx-auto" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bricolage font-bold text-white mb-6">Ready to Transform Your Business?</h2>
+                <p class="text-xl text-gray-300 mb-10">Join 150+ satisfied clients who have elevated their digital presence with Projukti Plus.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="inline-flex items-center justify-center px-8 py-4 bg-white text-primary-blue font-bold rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 relative overflow-hidden group">
+                        <i class="fas fa-calendar-alt mr-3 group-hover:rotate-12 transition-transform"></i> Book Consultation
+                        <span class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+                    </button>
+                    <button class="inline-flex items-center justify-center px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/30 text-white font-bold rounded-xl hover:bg-white/20 hover:scale-105 transition-all duration-300 group">
+                        <i class="fab fa-whatsapp mr-3 group-hover:animate-wave"></i> WhatsApp Us
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-primary-blue text-white pt-20 pb-10 relative overflow-hidden">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 bg-secondary-blue rounded-2xl flex items-center justify-center shadow-lg hover:rotate-12 transition-transform"><i class="fas fa-code text-white text-xl"></i></div>
+                        <div><h2 class="text-2xl font-bricolage font-bold">Plasic<span class="text-accent-orange">SaaS</span></h2><p class="text-sm text-gray-300">by Projukti Plus</p></div>
+                    </div>
+                    <p class="text-gray-300 mb-6">Transforming ideas into exceptional digital experiences through cutting-edge web development from Khulna, Bangladesh.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-accent-orange rounded-full flex items-center justify-center transition-all hover:-translate-y-1 hover:scale-110"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-accent-orange rounded-full flex items-center justify-center transition-all hover:-translate-y-1 hover:scale-110"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-accent-orange rounded-full flex items-center justify-center transition-all hover:-translate-y-1 hover:scale-110"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-6 border-b-2 border-accent-orange inline-block pb-1">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-300 hover:text-white transition-all hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-0 group-hover:opacity-100"></i> Home</a></li>
+                        <li><a href="#services" class="text-gray-300 hover:text-white transition-all hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-0 group-hover:opacity-100"></i> Services</a></li>
+                        <li><a href="#portfolio" class="text-gray-300 hover:text-white transition-all hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-0 group-hover:opacity-100"></i> Portfolio</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-white transition-all hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-0 group-hover:opacity-100"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-6 border-b-2 border-accent-orange inline-block pb-1">Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-all hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-0 group-hover:opacity-100"></i> Laravel Development</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-all hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-0 group-hover:opacity-100"></i> Vue.js Apps</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-all hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-0 group-hover:opacity-100"></i> WordPress</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-all hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-0 group-hover:opacity-100"></i> SaaS Solutions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-6 border-b-2 border-accent-orange inline-block pb-1">Contact Info</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start group"><i class="fas fa-map-marker-alt text-accent-orange mt-1 mr-3 group-hover:animate-bounce"></i><span class="text-gray-300 group-hover:text-white transition">Khulna, Bangladesh</span></li>
+                        <li class="flex items-center group"><i class="fas fa-envelope text-accent-orange mr-3 group-hover:animate-bounce"></i><span class="text-gray-300 group-hover:text-white transition">contact@projuktiplus.com</span></li>
+                        <li class="flex items-center group"><i class="fas fa-phone text-accent-orange mr-3 group-hover:animate-bounce"></i><span class="text-gray-300 group-hover:text-white transition">+880 1XXX-XXXXXX</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 text-center">
+                <p class="text-gray-400 text-sm">© 2025 <span class="text-accent-orange font-bold">Projukti Plus</span>. All rights reserved. Lead Developer: <span class="text-white">Md. Nayemur Rahman</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init({ duration: 1000, once: true, offset: 80 });
+        
+        $(document).ready(function(){
+            $('#mobileMenuBtn').click(function() {
+                $('#mobileMenu').slideToggle(300);
+                $(this).find('i').toggleClass('fa-bars fa-times');
+            });
+            
+            $('.testimonial-slider').slick({
+                dots: true, infinite: true, speed: 600,
+                slidesToShow: 2, slidesToScroll: 1, autoplay: true, autoplaySpeed: 4000, arrows: false,
+                responsive: [{ breakpoint: 768, settings: { slidesToShow: 1 } }]
+            });
+            
+            $('.faq-modern-header').click(function() {
+                const item = $(this).parent();
+                const content = $(this).next();
+                $('.faq-modern-item').not(item).removeClass('active').find('.faq-modern-content').slideUp(300);
+                item.toggleClass('active');
+                content.slideToggle(300);
+            });
+
+            $('.portfolio-filter').click(function() {
+                $('.portfolio-filter').removeClass('active bg-primary-blue text-white').addClass('bg-white text-primary-blue');
+                $(this).addClass('active bg-primary-blue text-white').removeClass('bg-white text-primary-blue');
+                var filter = $(this).data('filter');
+                if(filter === 'all') { $('.portfolio-item').fadeIn(400); } 
+                else { $('.portfolio-item').hide(); $('.portfolio-item.' + filter).fadeIn(400); }
+            });
+            
+            $('.counter').counterUp({ delay: 10, time: 1500 });
+            
+            const heroImage = document.querySelector('.hero-image');
+            if (heroImage) {
+                document.addEventListener('mousemove', (e) => {
+                    const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+                    const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+                    heroImage.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg) scale(1.02)`;
+                });
+                document.addEventListener('mouseleave', () => { heroImage.style.transform = `rotateY(-10deg) rotateX(5deg)`; });
+            }
+            
+            // Typing Animation
+            const typingText = document.querySelector('.typing-text');
+            if (typingText) {
+                const texts = ['Masterpiece', 'SaaS Platform', 'Web Application', 'Digital Solution'];
+                let textIndex = 0; let charIndex = 0; let isDeleting = false;
+                function type() {
+                    const currentText = texts[textIndex];
+                    if (isDeleting) { typingText.textContent = currentText.substring(0, charIndex - 1); charIndex--; } 
+                    else { typingText.textContent = currentText.substring(0, charIndex + 1); charIndex++; }
+                    if (!isDeleting && charIndex === currentText.length) { isDeleting = true; setTimeout(type, 2000); } 
+                    else if (isDeleting && charIndex === 0) { isDeleting = false; textIndex = (textIndex + 1) % texts.length; setTimeout(type, 500); } 
+                    else { setTimeout(type, isDeleting ? 50 : 100); }
+                }
+                setTimeout(type, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
