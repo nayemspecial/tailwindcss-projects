@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Blog | PlasicSaaS by Projukti Plus</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': '#1E3A8A',
+                        'secondary-blue': '#3B82F6',
+                        'accent-orange': '#F59E0B',
+                        'background': '#FFFFFF',
+                        'light-gray': '#F9FAFB',
+                        'text-dark': '#111827',
+                        'text-muted': '#6B7280',
+                        'dark-bg': '#0F172A',
+                    },
+                    fontFamily: {
+                        'bricolage': ['Bricolage Grotesque', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'gradient': 'gradient 8s ease infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Styles */
+        body { font-family: 'Poppins', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Bricolage Grotesque', sans-serif; }
+        
+        /* Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Blog Hero */
+        .blog-hero {
+            background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+            border-radius: 50%;
+        }
+        
+        /* Blog Card */
+        .blog-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #E5E7EB;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            height: 100%;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            border-color: #3B82F6;
+        }
+        
+        .blog-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .blog-card:hover .blog-image {
+            transform: scale(1.05);
+        }
+        
+        /* Category Badge */
+        .category-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.4rem 0.8rem;
+            background: #F3F4F6;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .category-badge:hover {
+            background: #3B82F6;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Tag Cloud */
+        .tag-cloud-item {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #F9FAFB;
+            border-radius: 0.5rem;
+            margin: 0.25rem;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+        
+        .tag-cloud-item:hover {
+            background: #3B82F6;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Pagination */
+        .pagination-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.5rem;
+            background: white;
+            border: 1px solid #E5E7EB;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination-item:hover, .pagination-item.active {
+            background: #3B82F6;
+            color: white;
+            border-color: #3B82F6;
+        }
+        
+        /* Featured Post */
+        .featured-post {
+            background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
+            border-radius: 1rem;
+            overflow: hidden;
+            position: relative;
+            color: white;
+        }
+        
+        .featured-post::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Search Box */
+        .search-box {
+            position: relative;
+        }
+        
+        .search-box input {
+            padding-left: 3rem;
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6B7280;
+        }
+        
+        /* Sidebar Widget */
+        .sidebar-widget {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid #E5E7EB;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Author Card */
+        .author-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid #E5E7EB;
+            text-align: center;
+        }
+        
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin: 0 auto 1rem;
+        }
+    </style>
+</head>
+<body class="bg-background text-text-dark">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-lg py-4 transition-all duration-300">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex items-center space-x-3 group">
+                    <div class="w-12 h-12 bg-gradient-to-r from-primary-blue to-secondary-blue rounded-2xl flex items-center justify-center transition-transform group-hover:rotate-12 duration-300 shadow-md group-hover:shadow-lg">
+                        <i class="fas fa-code text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bricolage font-bold text-primary-blue tracking-tight">Plasic<span class="text-accent-orange">SaaS</span></h1>
+                        <p class="text-xs text-text-muted hidden sm:block font-medium">by Projukti Plus</p>
+                    </div>
+                </a>
+                
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="text-text-dark hover:text-secondary-blue font-medium transition nav-link">Home</a>
+                    <a href="services.html" class="text-text-dark hover:text-secondary-blue font-medium transition nav-link">Services</a>
+                    <a href="portfolio.html" class="text-text-dark hover:text-secondary-blue font-medium transition nav-link">Portfolio</a>
+                    <a href="blog.html" class="text-secondary-blue font-medium border-b-2 border-secondary-blue pb-1">Blog</a>
+                    <a href="about.html" class="text-text-dark hover:text-secondary-blue font-medium transition nav-link">About</a>
+                    <a href="contact.html" class="text-text-dark hover:text-secondary-blue font-medium transition nav-link">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="contact.html" class="hidden md:inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary-blue to-secondary-blue text-white font-medium rounded-xl hover:shadow-xl transition-all duration-300 shadow-lg transform hover:-translate-y-1 hover:scale-105">
+                        <i class="fas fa-rocket mr-2"></i> Start Project
+                    </a>
+                    <button id="mobileMenuBtn" class="lg:hidden text-text-dark text-2xl hover:text-secondary-blue transition">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div id="mobileMenu" class="hidden lg:hidden mt-6 pb-4 border-t border-gray-200 pt-6">
+                <div class="flex flex-col space-y-4">
+                    <a href="index.html" class="text-text-dark font-medium p-2 hover:text-secondary-blue hover:bg-primary-blue/5 rounded-lg transition">Home</a>
+                    <a href="services.html" class="text-text-dark font-medium p-2 hover:text-secondary-blue hover:bg-primary-blue/5 rounded-lg transition">Services</a>
+                    <a href="portfolio.html" class="text-text-dark font-medium p-2 hover:text-secondary-blue hover:bg-primary-blue/5 rounded-lg transition">Portfolio</a>
+                    <a href="blog.html" class="text-secondary-blue font-medium p-2 bg-blue-50 rounded-lg">Blog</a>
+                    <a href="about.html" class="text-text-dark font-medium p-2 hover:text-secondary-blue hover:bg-primary-blue/5 rounded-lg transition">About</a>
+                    <a href="contact.html" class="text-text-dark font-medium p-2 hover:text-secondary-blue hover:bg-primary-blue/5 rounded-lg transition">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Hero Section -->
+    <section class="blog-hero text-white py-20">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <div data-aos="fade-up">
+                    <div class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-md rounded-full font-medium mb-6">
+                        <i class="fas fa-newspaper mr-2"></i> Web Development Insights
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bricolage font-bold mb-6">
+                        PlasicSaaS Blog
+                    </h1>
+                    
+                    <p class="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
+                        Expert insights, tutorials, and industry trends in web development, SaaS, and digital transformation.
+                    </p>
+                    
+                    <div class="search-box max-w-md mx-auto">
+                        <input type="text" 
+                               placeholder="Search articles..." 
+                               class="w-full px-4 py-3 pl-12 rounded-lg bg-white/20 backdrop-blur-sm border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white/50">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <section class="py-16 bg-light-gray">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Main Content -->
+                <div class="lg:col-span-2">
+                    <!-- Featured Post -->
+                    <div class="featured-post mb-12" data-aos="fade-up">
+                        <div class="relative p-8">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <span class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm">
+                                    Featured
+                                </span>
+                                <span class="text-white/80">Laravel</span>
+                                <span class="text-white/80">•</span>
+                                <span class="text-white/80">10 min read</span>
+                            </div>
+                            
+                            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                                <a href="blog-single.html" class="text-white hover:text-accent-orange transition">
+                                    Laravel 11: New Features and Migration Guide
+                                </a>
+                            </h2>
+                            
+                            <p class="text-white/90 mb-6">
+                                Explore the latest features in Laravel 11 and learn how to migrate your existing applications with our step-by-step guide.
+                            </p>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                         alt="Author" 
+                                         class="w-10 h-10 rounded-full border-2 border-white mr-3">
+                                    <div>
+                                        <div class="font-medium">John Doe</div>
+                                        <div class="text-sm text-white/80">Senior Laravel Developer</div>
+                                    </div>
+                                </div>
+                                <a href="blog-single.html" class="inline-flex items-center px-4 py-2 bg-white text-primary-blue font-medium rounded-lg hover:bg-gray-100 transition">
+                                    Read Article <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Posts Grid -->
+                    <div class="grid md:grid-cols-2 gap-8 mb-12">
+                        <!-- Post 1 -->
+                        <div class="blog-card" data-aos="fade-up" data-aos-delay="100">
+                            <div class="relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                     alt="Vue.js Performance" 
+                                     class="blog-image">
+                                <div class="absolute top-4 left-4">
+                                    <a href="category.html" class="category-badge bg-blue-100 text-blue-800 hover:bg-blue-600 hover:text-white">
+                                        Vue.js
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center text-sm text-text-muted mb-3">
+                                    <span>Mar 15, 2025</span>
+                                    <span class="mx-2">•</span>
+                                    <span>8 min read</span>
+                                </div>
+                                
+                                <h3 class="text-xl font-bold text-primary-blue mb-3">
+                                    <a href="blog-single.html" class="hover:text-secondary-blue transition">
+                                        Optimizing Vue.js Applications for Maximum Performance
+                                    </a>
+                                </h3>
+                                
+                                <p class="text-text-muted mb-4">
+                                    Learn advanced techniques to optimize your Vue.js applications, reduce bundle size, and improve loading times.
+                                </p>
+                                
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                             alt="Author" 
+                                             class="w-8 h-8 rounded-full mr-2">
+                                        <span class="text-sm font-medium">Sarah Johnson</span>
+                                    </div>
+                                    <a href="blog-single.html" class="text-secondary-blue hover:text-primary-blue text-sm font-medium">
+                                        Read More
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Post 2 -->
+                        <div class="blog-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                     alt="SaaS Architecture" 
+                                     class="blog-image">
+                                <div class="absolute top-4 left-4">
+                                    <a href="category.html" class="category-badge bg-green-100 text-green-800 hover:bg-green-600 hover:text-white">
+                                        SaaS
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center text-sm text-text-muted mb-3">
+                                    <span>Mar 10, 2025</span>
+                                    <span class="mx-2">•</span>
+                                    <span>12 min read</span>
+                                </div>
+                                
+                                <h3 class="text-xl font-bold text-primary-blue mb-3">
+                                    <a href="blog-single.html" class="hover:text-secondary-blue transition">
+                                        Building Scalable SaaS Architecture from Day One
+                                    </a>
+                                </h3>
+                                
+                                <p class="text-text-muted mb-4">
+                                    Essential architecture patterns and best practices for building SaaS applications that can scale to millions of users.
+                                </p>
+                                
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                             alt="Author" 
+                                             class="w-8 h-8 rounded-full mr-2">
+                                        <span class="text-sm font-medium">Michael Chen</span>
+                                    </div>
+                                    <a href="blog-single.html" class="text-secondary-blue hover:text-primary-blue text-sm font-medium">
+                                        Read More
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Post 3 -->
+                        <div class="blog-card" data-aos="fade-up" data-aos-delay="300">
+                            <div class="relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                     alt="React Best Practices" 
+                                     class="blog-image">
+                                <div class="absolute top-4 left-4">
+                                    <a href="category.html" class="category-badge bg-purple-100 text-purple-800 hover:bg-purple-600 hover:text-white">
+                                        React.js
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center text-sm text-text-muted mb-3">
+                                    <span>Mar 5, 2025</span>
+                                    <span class="mx-2">•</span>
+                                    <span>10 min read</span>
+                                </div>
+                                
+                                <h3 class="text-xl font-bold text-primary-blue mb-3">
+                                    <a href="blog-single.html" class="hover:text-secondary-blue transition">
+                                        React 18 Features and Concurrent Rendering
+                                    </a>
+                                </h3>
+                                
+                                <p class="text-text-muted mb-4">
+                                    Deep dive into React 18's concurrent features and how they can improve your application's user experience.
+                                </p>
+                                
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                             alt="Author" 
+                                             class="w-8 h-8 rounded-full mr-2">
+                                        <span class="text-sm font-medium">Emily Davis</span>
+                                    </div>
+                                    <a href="blog-single.html" class="text-secondary-blue hover:text-primary-blue text-sm font-medium">
+                                        Read More
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Post 4 -->
+                        <div class="blog-card" data-aos="fade-up" data-aos-delay="400">
+                            <div class="relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                     alt="API Security" 
+                                     class="blog-image">
+                                <div class="absolute top-4 left-4">
+                                    <a href="category.html" class="category-badge bg-red-100 text-red-800 hover:bg-red-600 hover:text-white">
+                                        Security
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center text-sm text-text-muted mb-3">
+                                    <span>Feb 28, 2025</span>
+                                    <span class="mx-2">•</span>
+                                    <span>15 min read</span>
+                                </div>
+                                
+                                <h3 class="text-xl font-bold text-primary-blue mb-3">
+                                    <a href="blog-single.html" class="hover:text-secondary-blue transition">
+                                        Comprehensive Guide to API Security Best Practices
+                                    </a>
+                                </h3>
+                                
+                                <p class="text-text-muted mb-4">
+                                    Protect your APIs from common security threats with our comprehensive guide to authentication, authorization, and encryption.
+                                </p>
+                                
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                             alt="Author" 
+                                             class="w-8 h-8 rounded-full mr-2">
+                                        <span class="text-sm font-medium">David Wilson</span>
+                                    </div>
+                                    <a href="blog-single.html" class="text-secondary-blue hover:text-primary-blue text-sm font-medium">
+                                        Read More
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Load More Button -->
+                    <div class="text-center mb-12" data-aos="fade-up">
+                        <button id="loadMore" class="inline-flex items-center px-6 py-3 bg-white border-2 border-primary-blue text-primary-blue font-bold rounded-lg hover:bg-primary-blue hover:text-white transition">
+                            <i class="fas fa-sync-alt mr-2"></i> Load More Articles
+                        </button>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="flex justify-center items-center space-x-2" data-aos="fade-up">
+                        <a href="#" class="pagination-item">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                        <a href="#" class="pagination-item active">1</a>
+                        <a href="#" class="pagination-item">2</a>
+                        <a href="#" class="pagination-item">3</a>
+                        <a href="#" class="pagination-item">4</a>
+                        <a href="#" class="pagination-item">5</a>
+                        <span class="px-2 text-text-muted">...</span>
+                        <a href="#" class="pagination-item">10</a>
+                        <a href="#" class="pagination-item">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Sidebar -->
+                <div class="space-y-8">
+                    <!-- Search Widget -->
+                    <div class="sidebar-widget" data-aos="fade-left">
+                        <h3 class="text-lg font-bold text-primary-blue mb-4">Search Articles</h3>
+                        <div class="search-box">
+                            <input type="text" 
+                                   placeholder="Type keywords..." 
+                                   class="w-full px-4 py-2 pl-10 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent">
+                            <i class="fas fa-search text-gray-400"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Categories Widget -->
+                    <div class="sidebar-widget" data-aos="fade-left" data-aos-delay="100">
+                        <h3 class="text-lg font-bold text-primary-blue mb-4">Categories</h3>
+                        <ul class="space-y-3">
+                            <li>
+                                <a href="category.html" class="flex items-center justify-between hover:text-secondary-blue transition">
+                                    <span class="flex items-center">
+                                        <i class="fas fa-code text-secondary-blue mr-2"></i>
+                                        Laravel Development
+                                    </span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">15</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="category.html" class="flex items-center justify-between hover:text-secondary-blue transition">
+                                    <span class="flex items-center">
+                                        <i class="fab fa-vuejs text-green-500 mr-2"></i>
+                                        Vue.js
+                                    </span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">12</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="category.html" class="flex items-center justify-between hover:text-secondary-blue transition">
+                                    <span class="flex items-center">
+                                        <i class="fab fa-react text-blue-400 mr-2"></i>
+                                        React.js
+                                    </span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">10</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="category.html" class="flex items-center justify-between hover:text-secondary-blue transition">
+                                    <span class="flex items-center">
+                                        <i class="fas fa-cloud text-orange-500 mr-2"></i>
+                                        SaaS Development
+                                    </span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">8</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="category.html" class="flex items-center justify-between hover:text-secondary-blue transition">
+                                    <span class="flex items-center">
+                                        <i class="fas fa-shield-alt text-red-500 mr-2"></i>
+                                        Web Security
+                                    </span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">6</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="category.html" class="flex items-center justify-between hover:text-secondary-blue transition">
+                                    <span class="flex items-center">
+                                        <i class="fas fa-chart-line text-purple-500 mr-2"></i>
+                                        Performance
+                                    </span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">5</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Recent Posts Widget -->
+                    <div class="sidebar-widget" data-aos="fade-left" data-aos-delay="200">
+                        <h3 class="text-lg font-bold text-primary-blue mb-4">Recent Posts</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <div class="w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden mr-4">
+                                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                         alt="Recent Post" 
+                                         class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <a href="blog-single.html" class="font-medium text-sm hover:text-secondary-blue transition line-clamp-2">
+                                        Database Optimization Techniques for Web Applications
+                                    </a>
+                                    <div class="text-xs text-text-muted mt-1">Feb 25, 2025</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden mr-4">
+                                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                         alt="Recent Post" 
+                                         class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <a href="blog-single.html" class="font-medium text-sm hover:text-secondary-blue transition line-clamp-2">
+                                        Microservices vs Monolith: Choosing the Right Architecture
+                                    </a>
+                                    <div class="text-xs text-text-muted mt-1">Feb 20, 2025</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden mr-4">
+                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                         alt="Recent Post" 
+                                         class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <a href="blog-single.html" class="font-medium text-sm hover:text-secondary-blue transition line-clamp-2">
+                                        Tailwind CSS Best Practices for Production
+                                    </a>
+                                    <div class="text-xs text-text-muted mt-1">Feb 18, 2025</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tags Widget -->
+                    <div class="sidebar-widget" data-aos="fade-left" data-aos-delay="300">
+                        <h3 class="text-lg font-bold text-primary-blue mb-4">Popular Tags</h3>
+                        <div class="flex flex-wrap">
+                            <a href="tag.html" class="tag-cloud-item m-1">Laravel</a>
+                            <a href="tag.html" class="tag-cloud-item m-1">Vue.js</a>
+                            <a href="tag.html" class="tag-cloud-item m-1">React</a>
+                            <a href="tag.html" class="tag-cloud-item m-1">SaaS</a>
+                            <a href="tag.html" class="tag-cloud-item m-1">API</a>
+                            <a href="tag.html" class="tag-cloud-item m-1">Security</a>
+                            <a href="tag.html" class="tag-cloud-item m-1">Performance</a>
+                            <a href="tag.html" class="tag-cloud-item m-1">DevOps</a>
+                            <a href="tag.html" class="tag-cloud-item m-1">Database</a>
+                            <a href="tag.html" class="tag-cloud-item m-1">JavaScript</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Newsletter Widget -->
+                    <div class="sidebar-widget bg-gradient-to-r from-primary-blue to-secondary-blue text-white" data-aos="fade-left" data-aos-delay="400">
+                        <h3 class="text-lg font-bold mb-4">Subscribe to Newsletter</h3>
+                        <p class="text-sm text-white/90 mb-4">
+                            Get the latest web development tips and tutorials directly in your inbox.
+                        </p>
+                        <form class="space-y-3">
+                            <input type="email" 
+                                   placeholder="Your email address" 
+                                   class="w-full px-4 py-2 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50">
+                            <button type="submit" class="w-full px-4 py-2 bg-white text-primary-blue font-bold rounded-lg hover:bg-gray-100 transition">
+                                Subscribe
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Author Spotlight -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bricolage font-bold text-primary-blue mb-4">
+                    Meet Our Authors
+                </h2>
+                <p class="text-xl text-text-muted max-w-2xl mx-auto">
+                    Expert developers and industry professionals sharing their knowledge
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="author-card" data-aos="zoom-in">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="Author" 
+                         class="author-avatar">
+                    <h3 class="text-xl font-bold text-primary-blue mb-2">John Doe</h3>
+                    <p class="text-text-muted text-sm mb-4">Senior Laravel Developer</p>
+                    <p class="text-text-muted text-sm mb-4">
+                        Specializes in backend architecture and system design with 8+ years of experience.
+                    </p>
+                    <div class="flex justify-center space-x-3">
+                        <a href="#" class="w-8 h-8 bg-gray-100 hover:bg-secondary-blue hover:text-white rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 bg-gray-100 hover:bg-secondary-blue hover:text-white rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 bg-gray-100 hover:bg-secondary-blue hover:text-white rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="author-card" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="Author" 
+                         class="author-avatar">
+                    <h3 class="text-xl font-bold text-primary-blue mb-2">Sarah Johnson</h3>
+                    <p class="text-text-muted text-sm mb-4">Frontend Architect</p>
+                    <p class="text-text-muted text-sm mb-4">
+                        Vue.js and React expert focusing on performance optimization and user experience.
+                    </p>
+                    <div class="flex justify-center space-x-3">
+                        <a href="#" class="w-8 h-8 bg-gray-100 hover:bg-secondary-blue hover:text-white rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 bg-gray-100 hover:bg-secondary-blue hover:text-white rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 bg-gray-100 hover:bg-secondary-blue hover:text-white rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="author-card" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="Author" 
+                         class="author-avatar">
+                    <h3 class="text-xl font-bold text-primary-blue mb-2">Michael Chen</h3>
+                    <p class="text-text-muted text-sm mb-4">DevOps Engineer</p>
+                    <p class="text-text-muted text-sm mb-4">
+                        Cloud infrastructure specialist with expertise in AWS, Docker, and CI/CD pipelines.
+                    </p>
+                    <div class="flex justify-center space-x-3">
+                        <a href="#" class="w-8 h-8 bg-gray-100 hover:bg-secondary-blue hover:text-white rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 bg-gray-100 hover:bg-secondary-blue hover:text-white rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 bg-gray-100 hover:bg-secondary-blue hover:text-white rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="author-card" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="Author" 
+                         class="author-avatar">
+                    <h3 class="text-xl font-bold text-primary-blue mb-2">David Wilson</h3>
+                    <p class="text-text-muted text-sm mb-4">Security Specialist</p>
+                    <p class="text-text-muted text-sm mb-4">
+                        Focuses on web application security, penetration testing, and security best practices.
+                    </p>
+                    <div class="flex justify-center space-x-3">
+                        <a href="#" class="w-8 h-8 bg-gray-100 hover:bg-secondary-blue hover:text-white rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 bg-gray-100 hover:bg-secondary-blue hover:text-white rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 bg-gray-100 hover:bg-secondary-blue hover:text-white rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-primary-blue to-secondary-blue text-white">
+        <div class="container mx-auto px-4 text-center">
+            <div data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bricolage font-bold mb-6">
+                    Want to Contribute to Our Blog?
+                </h2>
+                <p class="text-xl mb-10 max-w-2xl mx-auto">
+                    Share your expertise with our community of web developers and get featured on our platform.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="contact.html" class="inline-flex items-center justify-center px-8 py-4 bg-white text-primary-blue font-bold rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                        <i class="fas fa-pen-alt mr-3"></i> Submit Article
+                    </a>
+                    <a href="contact.html" class="inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-primary-blue transition">
+                        <i class="fas fa-envelope mr-3"></i> Contact Editors
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-bg text-white pt-20 pb-10 relative overflow-hidden">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 bg-secondary-blue rounded-2xl flex items-center justify-center shadow-lg hover:rotate-12 transition-transform"><i class="fas fa-code text-white text-xl"></i></div>
+                        <div><h2 class="text-2xl font-bricolage font-bold">Plasic<span class="text-accent-orange">SaaS</span></h2><p class="text-sm text-gray-300">by Projukti Plus</p></div>
+                    </div>
+                    <p class="text-gray-300 mb-6">Transforming ideas into exceptional digital experiences through cutting-edge web development from Khulna, Bangladesh.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-accent-orange rounded-full flex items-center justify-center transition-all hover:-translate-y-1 hover:scale-110"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-accent-orange rounded-full flex items-center justify-center transition-all hover:-translate-y-1 hover:scale-110"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-accent-orange rounded-full flex items-center justify-center transition-all hover:-translate-y-1 hover:scale-110"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-6 border-b-2 border-accent-orange inline-block pb-1">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white transition-all hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-0 group-hover:opacity-100"></i> Home</a></li>
+                        <li><a href="services.html" class="text-gray-300 hover:text-white transition-all hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-0 group-hover:opacity-100"></i> Services</a></li>
+                        <li><a href="portfolio.html" class="text-gray-300 hover:text-white transition-all hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-0 group-hover:opacity-100"></i> Portfolio</a></li>
+                        <li><a href="blog.html" class="text-gray-300 hover:text-white transition-all hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-0 group-hover:opacity-100"></i> Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-6 border-b-2 border-accent-orange inline-block pb-1">Blog Categories</h3>
+                    <ul class="space-y-3">
+                        <li><a href="category.html" class="text-gray-300 hover:text-white transition-all hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-0 group-hover:opacity-100"></i> Laravel Development</a></li>
+                        <li><a href="category.html" class="text-gray-300 hover:text-white transition-all hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-0 group-hover:opacity-100"></i> Vue.js Tutorials</a></li>
+                        <li><a href="category.html" class="text-gray-300 hover:text-white transition-all hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-0 group-hover:opacity-100"></i> SaaS Development</a></li>
+                        <li><a href="category.html" class="text-gray-300 hover:text-white transition-all hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-0 group-hover:opacity-100"></i> Web Security</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-6 border-b-2 border-accent-orange inline-block pb-1">Contact Info</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start group"><i class="fas fa-map-marker-alt text-accent-orange mt-1 mr-3 group-hover:animate-bounce"></i><span class="text-gray-300 group-hover:text-white transition">Khulna, Bangladesh</span></li>
+                        <li class="flex items-center group"><i class="fas fa-envelope text-accent-orange mr-3 group-hover:animate-bounce"></i><span class="text-gray-300 group-hover:text-white transition">contact@projuktiplus.com</span></li>
+                        <li class="flex items-center group"><i class="fas fa-phone text-accent-orange mr-3 group-hover:animate-bounce"></i><span class="text-gray-300 group-hover:text-white transition">+880 1XXX-XXXXXX</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 text-center">
+                <p class="text-gray-400 text-sm">© 2025 <span class="text-accent-orange font-bold">Projukti Plus</span>. All rights reserved. Lead Developer: <span class="text-white">Md. Nayemur Rahman</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init({ duration: 1000, once: true, offset: 80 });
+        
+        $(document).ready(function(){
+            // Mobile Menu Toggle
+            $('#mobileMenuBtn').click(function() {
+                $('#mobileMenu').slideToggle(300);
+                $(this).find('i').toggleClass('fa-bars fa-times');
+            });
+            
+            // Load More Articles
+            $('#loadMore').click(function() {
+                $(this).html('<i class="fas fa-spinner fa-spin mr-2"></i> Loading...');
+                setTimeout(() => {
+                    // Simulate loading more articles
+                    $(this).html('<i class="fas fa-sync-alt mr-2"></i> Load More Articles');
+                    alert('More articles loaded!');
+                }, 1500);
+            });
+            
+            // Search functionality
+            $('.search-box input').on('keyup', function(e) {
+                if(e.keyCode === 13) {
+                    const query = $(this).val();
+                    if(query.length > 2) {
+                        alert(`Searching for: ${query}`);
+                        // Implement actual search functionality here
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
