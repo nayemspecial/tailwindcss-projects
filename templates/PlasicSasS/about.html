@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Projukti Plus - PlasicSaaS Web Development Agency</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': '#1E3A8A',
+                        'secondary-blue': '#3B82F6',
+                        'accent-orange': '#F59E0B',
+                        'background': '#FFFFFF',
+                        'light-gray': '#F9FAFB',
+                        'text-dark': '#111827',
+                        'text-muted': '#6B7280',
+                        'dark-bg': '#0F172A',
+                    },
+                    fontFamily: {
+                        'bricolage': ['Bricolage Grotesque', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'gradient': 'gradient 8s ease infinite',
+                        'spin-slow': 'spin 8s linear infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Styles */
+        body { font-family: 'Poppins', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Bricolage Grotesque', sans-serif; }
+        
+        /* About Hero */
+        .about-hero {
+            background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            top: -150px;
+            right: -150px;
+            border-radius: 50%;
+        }
+        
+        .about-hero::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(245,158,11,0.1) 0%, transparent 70%);
+            bottom: -100px;
+            left: -100px;
+            border-radius: 50%;
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background: #3B82F6;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background: white;
+            position: relative;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid #E5E7EB;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background: white;
+            border: 4px solid #3B82F6;
+            top: 30px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            left: -10px;
+            background: white;
+            border: 4px solid #3B82F6;
+            top: 30px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        /* Team Card */
+        .team-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #E5E7EB;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-color: #3B82F6;
+        }
+        
+        .team-image {
+            height: 280px;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .team-card:hover .team-image {
+            transform: scale(1.05);
+        }
+        
+        /* Values Card */
+        .value-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid #E5E7EB;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #1E3A8A, #3B82F6);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .value-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        /* Stats Card */
+        .stats-card {
+            background: linear-gradient(135deg, #1E3A8A, #3B82F6);
+            border-radius: 1rem;
+            padding: 2rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(30, 58, 138, 0.3);
+        }
+        
+        /* Navbar Enhancement */
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
+            background: linear-gradient(90deg, #3B82F6, #F59E0B); transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+        
+        /* Responsive Timeline */
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::after,
+            .timeline-item:nth-child(even) .timeline-content::after {
+                left: 21px;
+                right: auto;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-text-dark">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white shadow-md py-4">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 bg-gradient-to-r from-primary-blue to-secondary-blue rounded-xl flex items-center justify-center transition-transform group-hover:rotate-12 duration-300">
+                        <i class="fas fa-code text-white"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bricolage font-bold text-primary-blue">Plasic<span class="text-accent-orange">SaaS</span></h1>
+                        <p class="text-xs text-text-muted hidden sm:block">by Projukti Plus</p>
+                    </div>
+                </a>
+                
+                <div class="hidden lg:flex items-center space-x-6">
+                    <a href="index.html" class="text-text-dark hover:text-secondary-blue font-medium nav-link">Home</a>
+                    <a href="services.html" class="text-text-dark hover:text-secondary-blue font-medium nav-link">Services</a>
+                    <a href="about.html" class="text-secondary-blue font-medium border-b-2 border-secondary-blue pb-1">About</a>
+                    <a href="portfolio.html" class="text-text-dark hover:text-secondary-blue font-medium nav-link">Portfolio</a>
+                    <a href="contact.html" class="text-text-dark hover:text-secondary-blue font-medium nav-link">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="contact.html" class="hidden md:inline-flex items-center px-5 py-2 bg-gradient-to-r from-primary-blue to-secondary-blue text-white font-medium rounded-lg hover:shadow-lg transition hover:scale-105">
+                        <i class="fas fa-rocket mr-2"></i> Start Project
+                    </a>
+                    <button id="mobileMenuBtn" class="lg:hidden text-text-dark text-2xl">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div id="mobileMenu" class="hidden lg:hidden mt-4 pb-4 border-t border-gray-200 pt-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="index.html" class="text-text-dark font-medium p-2 hover:bg-blue-50 rounded-lg">Home</a>
+                    <a href="services.html" class="text-text-dark font-medium p-2 hover:bg-blue-50 rounded-lg">Services</a>
+                    <a href="about.html" class="text-secondary-blue font-medium p-2 bg-blue-50 rounded-lg">About</a>
+                    <a href="portfolio.html" class="text-text-dark font-medium p-2 hover:bg-blue-50 rounded-lg">Portfolio</a>
+                    <a href="contact.html" class="text-text-dark font-medium p-2 hover:bg-blue-50 rounded-lg">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Hero Section -->
+    <section class="about-hero text-white py-20 relative">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center max-w-4xl mx-auto" data-aos="fade-up">
+                <div class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-md rounded-full font-medium mb-6">
+                    <i class="fas fa-building mr-2"></i> About Our Company
+                </div>
+                
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bricolage font-bold mb-6">
+                    Building Digital Excellence Since 2020
+                </h1>
+                
+                <p class="text-xl text-gray-200 mb-8">
+                    We are Projukti Plus, a passionate team of web developers, designers, and digital strategists from Khulna, Bangladesh. Our mission is to transform business ideas into exceptional digital experiences.
+                </p>
+                
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#story" class="inline-flex items-center px-6 py-3 bg-white text-primary-blue font-bold rounded-lg hover:shadow-xl transition hover:scale-105">
+                        <i class="fas fa-history mr-2"></i> Our Story
+                    </a>
+                    <a href="#team" class="inline-flex items-center px-6 py-3 bg-transparent border border-white/30 text-white font-bold rounded-lg hover:bg-white/10 transition">
+                        <i class="fas fa-users mr-2"></i> Meet Our Team
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Stats -->
+    <section class="py-16 bg-light-gray">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="stats-card text-center" data-aos="fade-up">
+                    <div class="text-3xl md:text-4xl font-bold mb-2 counter">150+</div>
+                    <div class="text-blue-100">Projects Delivered</div>
+                </div>
+                
+                <div class="stats-card text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-3xl md:text-4xl font-bold mb-2 counter">98%</div>
+                    <div class="text-blue-100">Client Satisfaction</div>
+                </div>
+                
+                <div class="stats-card text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-3xl md:text-4xl font-bold mb-2 counter">5+</div>
+                    <div class="text-blue-100">Years Experience</div>
+                </div>
+                
+                <div class="stats-card text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-3xl md:text-4xl font-bold mb-2 counter">15+</div>
+                    <div class="text-blue-100">Team Members</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Story -->
+    <section id="story" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bricolage font-bold text-primary-blue mb-4">
+                    Our Journey
+                </h2>
+                <p class="text-xl text-text-muted max-w-3xl mx-auto">
+                    From a small startup to a leading web development agency in Bangladesh
+                </p>
+            </div>
+            
+            <div class="timeline">
+                <!-- Timeline Item 1 -->
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <div class="text-sm text-accent-orange font-bold mb-2">July 2020</div>
+                        <h3 class="text-xl font-bold text-primary-blue mb-2">The Beginning</h3>
+                        <p class="text-text-muted">
+                            Founded by Md. Nayemur Rahman with a vision to create exceptional web solutions. Started as a solo freelancer working from a small office in Khulna.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 2 -->
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-content">
+                        <div class="text-sm text-accent-orange font-bold mb-2">March 2021</div>
+                        <h3 class="text-xl font-bold text-primary-blue mb-2">First Major Project</h3>
+                        <p class="text-text-muted">
+                            Landed our first enterprise client - a Laravel-based inventory management system. Successfully delivered ahead of schedule with exceptional quality.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 3 -->
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <div class="text-sm text-accent-orange font-bold mb-2">September 2021</div>
+                        <h3 class="text-xl font-bold text-primary-blue mb-2">Team Expansion</h3>
+                        <p class="text-text-muted">
+                            Grew from a solo operation to a team of 5 talented developers and designers. Moved to our first proper office space in Khulna city.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 4 -->
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-content">
+                        <div class="text-sm text-accent-orange font-bold mb-2">January 2022</div>
+                        <h3 class="text-xl font-bold text-primary-blue mb-2">SaaS Specialization</h3>
+                        <p class="text-text-muted">
+                            Launched our SaaS development division. Started working with international clients from USA, UK, and Australia on complex SaaS platforms.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 5 -->
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <div class="text-sm text-accent-orange font-bold mb-2">June 2023</div>
+                        <h3 class="text-xl font-bold text-primary-blue mb-2">PlasicSaaS Brand Launch</h3>
+                        <p class="text-text-muted">
+                            Introduced our premium brand "PlasicSaaS" focused on enterprise-grade web applications. Expanded team to 15+ members with specialized roles.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 6 -->
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-content">
+                        <div class="text-sm text-accent-orange font-bold mb-2">Present</div>
+                        <h3 class="text-xl font-bold text-primary-blue mb-2">Industry Recognition</h3>
+                        <p class="text-text-muted">
+                            Recognized as one of the leading web development agencies in Bangladesh. Working with 50+ clients globally across various industries.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="py-20 bg-gradient-to-r from-primary-blue/5 to-secondary-blue/5">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div data-aos="fade-right">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <div class="w-16 h-16 bg-gradient-to-r from-primary-blue to-secondary-blue rounded-xl flex items-center justify-center mb-6">
+                            <i class="fas fa-bullseye text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary-blue mb-4">Our Mission</h3>
+                        <p class="text-text-muted mb-4">
+                            To empower businesses with cutting-edge web solutions that drive growth, efficiency, and digital transformation. We believe in creating technology that works for people, not the other way around.
+                        </p>
+                        <p class="text-text-muted">
+                            We're committed to delivering exceptional value through innovative solutions, transparent processes, and unwavering dedication to quality.
+                        </p>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <div class="w-16 h-16 bg-gradient-to-r from-secondary-blue to-accent-orange rounded-xl flex items-center justify-center mb-6">
+                            <i class="fas fa-eye text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary-blue mb-4">Our Vision</h3>
+                        <p class="text-text-muted mb-4">
+                            To become Bangladesh's most trusted web development partner for businesses seeking to thrive in the digital age. We aim to bridge the gap between innovative technology and practical business solutions.
+                        </p>
+                        <p class="text-text-muted">
+                            Our vision extends beyond code - we want to create digital ecosystems that transform how businesses operate and interact with their customers.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Team -->
+    <section id="team" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bricolage font-bold text-primary-blue mb-4">
+                    Meet Our Team
+                </h2>
+                <p class="text-xl text-text-muted max-w-3xl mx-auto">
+                    Passionate professionals dedicated to creating exceptional digital experiences
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Team Member 1 -->
+                <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                             alt="Md. Nayemur Rahman" 
+                             class="team-image">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary-blue mb-1">Md. Nayemur Rahman</h3>
+                        <p class="text-accent-orange font-medium mb-3">Founder & Lead Developer</p>
+                        <p class="text-text-muted text-sm mb-4">
+                            8+ years experience in Laravel and Vue.js. Spearheads complex SaaS projects and architecture design.
+                        </p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-secondary-blue hover:text-primary-blue">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="text-secondary-blue hover:text-primary-blue">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="text-secondary-blue hover:text-primary-blue">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                             alt="Fatima Akter" 
+                             class="team-image">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary-blue mb-1">Fatima Akter</h3>
+                        <p class="text-accent-orange font-medium mb-3">Senior UI/UX Designer</p>
+                        <p class="text-text-muted text-sm mb-4">
+                            Creates stunning user interfaces and experiences. Expert in Figma, Adobe XD, and design systems.
+                        </p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-secondary-blue hover:text-primary-blue">
+                                <i class="fab fa-dribbble"></i>
+                            </a>
+                            <a href="#" class="text-secondary-blue hover:text-primary-blue">
+                                <i class="fab fa-behance"></i>
+                            </a>
+                            <a href="#" class="text-secondary-blue hover:text-primary-blue">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 3 -->
+                <div class="team-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                             alt="Rahim Ahmed" 
+                             class="team-image">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary-blue mb-1">Rahim Ahmed</h3>
+                        <p class="text-accent-orange font-medium mb-3">Full Stack Developer</p>
+                        <p class="text-text-muted text-sm mb-4">
+                            Specializes in React.js and Node.js. Builds scalable applications with modern JavaScript frameworks.
+                        </p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-secondary-blue hover:text-primary-blue">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="text-secondary-blue hover:text-primary-blue">
+                                <i class="fab fa-stack-overflow"></i>
+                            </a>
+                            <a href="#" class="text-secondary-blue hover:text-primary-blue">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 4 -->
+                <div class="team-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                             alt="Sadia Islam" 
+                             class="team-image">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary-blue mb-1">Sadia Islam</h3>
+                        <p class="text-accent-orange font-medium mb-3">Project Manager</p>
+                        <p class="text-text-muted text-sm mb-4">
+                            Ensures projects are delivered on time and exceed client expectations. Agile methodology expert.
+                        </p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-secondary-blue hover:text-primary-blue">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="text-secondary-blue hover:text-primary-blue">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-secondary-blue hover:text-primary-blue">
+                                <i class="fas fa-globe"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center" data-aos="fade-up">
+                <p class="text-text-muted mb-6">
+                    ...and 10+ other talented developers, designers, and QA specialists who work behind the scenes to deliver excellence.
+                </p>
+                <a href="careers.html" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary-blue to-secondary-blue text-white font-bold rounded-lg hover:shadow-lg transition">
+                    <i class="fas fa-briefcase mr-2"></i> Join Our Team
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values -->
+    <section class="py-20 bg-light-gray">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bricolage font-bold text-primary-blue mb-4">
+                    Our Core Values
+                </h2>
+                <p class="text-xl text-text-muted max-w-3xl mx-auto">
+                    The principles that guide everything we do at Projukti Plus
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Value 1 -->
+                <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-gradient-to-r from-primary-blue to-secondary-blue rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-heart text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary-blue mb-3">Client Success First</h3>
+                    <p class="text-text-muted">
+                        We measure our success by our clients' success. Every project is approached with the goal of delivering maximum business value.
+                    </p>
+                </div>
+                
+                <!-- Value 2 -->
+                <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-gradient-to-r from-secondary-blue to-accent-orange rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-lightbulb text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary-blue mb-3">Innovation & Excellence</h3>
+                    <p class="text-text-muted">
+                        We continuously explore new technologies and methodologies to deliver cutting-edge solutions that exceed expectations.
+                    </p>
+                </div>
+                
+                <!-- Value 3 -->
+                <div class="value-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 bg-gradient-to-r from-accent-orange to-primary-blue rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-handshake text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary-blue mb-3">Transparency & Trust</h3>
+                    <p class="text-text-muted">
+                        We believe in open communication, honest pricing, and building long-term relationships based on trust and reliability.
+                    </p>
+                </div>
+                
+                <!-- Value 4 -->
+                <div class="value-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-14 h-14 bg-gradient-to-r from-primary-blue to-accent-orange rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-users text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary-blue mb-3">Collaborative Approach</h3>
+                    <p class="text-text-muted">
+                        We work as an extension of your team, ensuring alignment with your business goals and seamless collaboration.
+                    </p>
+                </div>
+                
+                <!-- Value 5 -->
+                <div class="value-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-14 h-14 bg-gradient-to-r from-secondary-blue to-primary-blue rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary-blue mb-3">Quality & Security</h3>
+                    <p class="text-text-muted">
+                        We adhere to highest coding standards, implement robust security measures, and conduct thorough testing.
+                    </p>
+                </div>
+                
+                <!-- Value 6 -->
+                <div class="value-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="w-14 h-14 bg-gradient-to-r from-accent-orange to-secondary-blue rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-clock text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary-blue mb-3">Timely Delivery</h3>
+                    <p class="text-text-muted">
+                        We respect deadlines and deliver projects on time without compromising on quality or functionality.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Culture -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bricolage font-bold text-primary-blue mb-4">
+                    Our Work Culture
+                </h2>
+                <p class="text-xl text-text-muted max-w-3xl mx-auto">
+                    A supportive environment where creativity and innovation thrive
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-laptop-code text-primary-blue text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary-blue mb-3">Flexible Work</h3>
+                    <p class="text-text-muted">
+                        Hybrid work model with flexible hours to maintain work-life balance while ensuring productivity.
+                    </p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-graduation-cap text-accent-orange text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary-blue mb-3">Continuous Learning</h3>
+                    <p class="text-text-muted">
+                        Regular training sessions, workshops, and conference attendance to stay updated with latest technologies.
+                    </p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-trophy text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary-blue mb-3">Recognition & Growth</h3>
+                    <p class="text-text-muted">
+                        Performance-based rewards, career growth opportunities, and recognition for outstanding work.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-20 bg-gradient-to-r from-primary-blue/5 to-secondary-blue/5">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bricolage font-bold text-primary-blue mb-4">
+                    Why Choose Projukti Plus?
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div data-aos="fade-right">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <h3 class="text-2xl font-bold text-primary-blue mb-6">What Sets Us Apart</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-bold text-primary-blue">Bangladeshi Excellence</h4>
+                                    <p class="text-text-muted text-sm">World-class quality at competitive pricing from Khulna, Bangladesh.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-bold text-primary-blue">End-to-End Solutions</h4>
+                                    <p class="text-text-muted text-sm">From concept to deployment and ongoing support - we handle it all.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-bold text-primary-blue">Agile Methodology</h4>
+                                    <p class="text-text-muted text-sm">Flexible, iterative approach with regular updates and feedback cycles.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <h3 class="text-2xl font-bold text-primary-blue mb-6">Our Commitment</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-bold text-primary-blue">No Hidden Costs</h4>
+                                    <p class="text-text-muted text-sm">Transparent pricing with detailed breakdowns and no surprise charges.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-bold text-primary-blue">IP Protection</h4>
+                                    <p class="text-text-muted text-sm">You own 100% of the source code, designs, and intellectual property.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-bold text-primary-blue">Long-term Partnership</h4>
+                                    <p class="text-text-muted text-sm">We become your technology partner, not just a one-time service provider.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-primary-blue to-secondary-blue text-white">
+        <div class="container mx-auto px-4 text-center">
+            <div data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bricolage font-bold mb-6">
+                    Ready to Work With Us?
+                </h2>
+                <p class="text-xl mb-10 max-w-2xl mx-auto">
+                    Let's discuss how Projukti Plus can help transform your business with exceptional web solutions.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="contact.html" class="inline-flex items-center justify-center px-8 py-4 bg-white text-primary-blue font-bold rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                        <i class="fas fa-calendar-alt mr-3"></i> Schedule Consultation
+                    </a>
+                    <a href="portfolio.html" class="inline-flex items-center justify-center px-8 py-4 bg-transparent border border-white/30 text-white font-bold rounded-xl hover:bg-white/10 transition">
+                        <i class="fas fa-eye mr-3"></i> View Our Work
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-bg text-white pt-12 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-secondary-blue rounded-xl flex items-center justify-center">
+                            <i class="fas fa-code text-white"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bricolage font-bold">Plasic<span class="text-accent-orange">SaaS</span></h2>
+                            <p class="text-sm text-gray-400">by Projukti Plus</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6">
+                        Transforming ideas into exceptional digital experiences through cutting-edge web development from Khulna, Bangladesh.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-8 h-8 bg-gray-800 hover:bg-accent-orange rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 bg-gray-800 hover:bg-accent-orange rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 bg-gray-800 hover:bg-accent-orange rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white text-sm transition">Home</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white text-sm transition">Services</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white text-sm transition">About Us</a></li>
+                        <li><a href="portfolio.html" class="text-gray-400 hover:text-white text-sm transition">Portfolio</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="laravel.html" class="text-gray-400 hover:text-white text-sm transition">Laravel Development</a></li>
+                        <li><a href="vuejs.html" class="text-gray-400 hover:text-white text-sm transition">Vue.js Development</a></li>
+                        <li><a href="reactjs.html" class="text-gray-400 hover:text-white text-sm transition">React.js Development</a></li>
+                        <li><a href="wordpress.html" class="text-gray-400 hover:text-white text-sm transition">WordPress Development</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Contact</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-accent-orange mt-1 mr-3"></i>
+                            <span class="text-gray-400 text-sm">Khulna, Bangladesh</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-accent-orange mr-3"></i>
+                            <span class="text-gray-400 text-sm">contact@projuktiplus.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-accent-orange mr-3"></i>
+                            <span class="text-gray-400 text-sm">+880 1XXX-XXXXXX</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-500 text-sm">
+                    © 2025 <span class="text-accent-orange font-bold">Projukti Plus</span>. All rights reserved. 
+                    <span class="block sm:inline">Lead Developer: <span class="text-white">Md. Nayemur Rahman</span></span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init({ duration: 1000, once: true, offset: 80 });
+        
+        $(document).ready(function(){
+            // Mobile Menu Toggle
+            $('#mobileMenuBtn').click(function() {
+                $('#mobileMenu').slideToggle(300);
+                $(this).find('i').toggleClass('fa-bars fa-times');
+            });
+            
+            // Counter Animation
+            $('.counter').counterUp({ delay: 10, time: 1500 });
+            
+            // Smooth scrolling for anchor links
+            $('a[href^="#"]').on('click', function(event) {
+                if (this.hash !== "") {
+                    event.preventDefault();
+                    const hash = this.hash;
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top - 80
+                    }, 800);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
