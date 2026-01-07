@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laravel Development Services | PlasicSaaS by Projukti Plus</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': '#1E3A8A',
+                        'secondary-blue': '#3B82F6',
+                        'accent-orange': '#F59E0B',
+                        'background': '#FFFFFF',
+                        'light-gray': '#F9FAFB',
+                        'text-dark': '#111827',
+                        'text-muted': '#6B7280',
+                        'dark-bg': '#0F172A',
+                    },
+                    fontFamily: {
+                        'bricolage': ['Bricolage Grotesque', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'gradient': 'gradient 8s ease infinite',
+                        'typing': 'typing 3.5s steps(40, end)',
+                        'blink-caret': 'blink-caret .75s step-end infinite',
+                        'spin-slow': 'spin 8s linear infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Styles */
+        body { font-family: 'Poppins', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Bricolage Grotesque', sans-serif; }
+        
+        /* Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Service Hero */
+        .service-hero {
+            background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-hero::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+            border-radius: 50%;
+        }
+        
+        /* Feature Card */
+        .feature-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid #E5E7EB;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            border-color: #3B82F6;
+        }
+        
+        /* Tech Stack */
+        .tech-stack-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: #F9FAFB;
+            border-radius: 0.75rem;
+            transition: all 0.3s ease;
+            border: 1px solid #E5E7EB;
+        }
+        
+        .tech-stack-item:hover {
+            background: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-color: #3B82F6;
+        }
+        
+        /* Process Step */
+        .process-step {
+            position: relative;
+            padding-left: 3rem;
+        }
+        
+        .process-step::before {
+            content: '';
+            position: absolute;
+            left: 1.5rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #E5E7EB;
+        }
+        
+        .process-step:last-child::before {
+            display: none;
+        }
+        
+        .step-number {
+            position: absolute;
+            left: 0;
+            width: 3rem;
+            height: 3rem;
+            background: #3B82F6;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.25rem;
+            z-index: 1;
+        }
+        
+        /* Package Card */
+        .package-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 2px solid #E5E7EB;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .package-card:hover {
+            transform: translateY(-10px);
+            border-color: #3B82F6;
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
+        }
+        
+        .package-card.popular::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #F59E0B;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-bottom-left-radius: 0.5rem;
+        }
+        
+        /* FAQ */
+        .faq-item {
+            border-bottom: 1px solid #E5E7EB;
+            padding: 1.5rem 0;
+        }
+        
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.125rem;
+        }
+        
+        .faq-answer {
+            display: none;
+            padding-top: 1rem;
+            color: #6B7280;
+            line-height: 1.6;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-background text-text-dark">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white shadow-md py-4">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-r from-primary-blue to-secondary-blue rounded-xl flex items-center justify-center">
+                        <i class="fas fa-code text-white"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bricolage font-bold text-primary-blue">Plasic<span class="text-accent-orange">SaaS</span></h1>
+                        <p class="text-xs text-text-muted hidden sm:block">by Projukti Plus</p>
+                    </div>
+                </a>
+                
+                <div class="hidden lg:flex items-center space-x-6">
+                    <a href="index.html" class="text-text-dark hover:text-secondary-blue font-medium">Home</a>
+                    <a href="services.html" class="text-secondary-blue font-medium border-b-2 border-secondary-blue pb-1">Services</a>
+                    <a href="portfolio.html" class="text-text-dark hover:text-secondary-blue font-medium">Portfolio</a>
+                    <a href="about.html" class="text-text-dark hover:text-secondary-blue font-medium">About</a>
+                    <a href="contact.html" class="text-text-dark hover:text-secondary-blue font-medium">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="contact.html" class="hidden md:inline-flex items-center px-5 py-2 bg-gradient-to-r from-primary-blue to-secondary-blue text-white font-medium rounded-lg hover:shadow-lg transition">
+                        <i class="fas fa-rocket mr-2"></i> Start Project
+                    </a>
+                    <button id="mobileMenuBtn" class="lg:hidden text-text-dark text-2xl">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div id="mobileMenu" class="hidden lg:hidden mt-4 pb-4 border-t border-gray-200 pt-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="index.html" class="text-text-dark font-medium p-2">Home</a>
+                    <a href="services.html" class="text-secondary-blue font-medium p-2 bg-blue-50 rounded-lg">Services</a>
+                    <a href="portfolio.html" class="text-text-dark font-medium p-2">Portfolio</a>
+                    <a href="about.html" class="text-text-dark font-medium p-2">About</a>
+                    <a href="contact.html" class="text-text-dark font-medium p-2">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Service Hero Section -->
+    <section class="service-hero text-white py-20">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-md rounded-full font-medium mb-6">
+                        <i class="fab fa-laravel mr-2 text-xl"></i> Laravel Development
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bricolage font-bold mb-6">
+                        Enterprise-Grade Laravel Development
+                    </h1>
+                    
+                    <p class="text-xl text-gray-200 mb-8">
+                        Build robust, scalable web applications with Laravel - the PHP framework for web artisans. We deliver secure, high-performance solutions tailored to your business needs.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#contact" class="inline-flex items-center px-6 py-3 bg-white text-primary-blue font-bold rounded-lg hover:shadow-xl transition hover:scale-105">
+                            <i class="fas fa-calendar-check mr-2"></i> Book Consultation
+                        </a>
+                        <a href="#portfolio" class="inline-flex items-center px-6 py-3 bg-transparent border border-white/30 text-white font-bold rounded-lg hover:bg-white/10 transition">
+                            <i class="fas fa-eye mr-2"></i> View Projects
+                        </a>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left" class="relative">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-2">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                             alt="Laravel Development" 
+                             class="w-full h-auto rounded-xl shadow-2xl">
+                    </div>
+                    <div class="absolute -bottom-4 -left-4 bg-white text-primary-blue px-6 py-3 rounded-lg shadow-lg">
+                        <div class="text-2xl font-bold">98%</div>
+                        <div class="text-sm">Client Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Overview -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div data-aos="fade-right">
+                    <h2 class="text-3xl md:text-4xl font-bricolage font-bold text-primary-blue mb-6">
+                        Why Choose Laravel for Your Project?
+                    </h2>
+                    <p class="text-text-muted mb-6">
+                        Laravel is more than just a PHP framework - it's a complete ecosystem for building modern web applications. With elegant syntax, powerful features, and a vibrant community, Laravel accelerates development while ensuring maintainability and security.
+                    </p>
+                    <p class="text-text-muted mb-8">
+                        Our team of certified Laravel developers leverages the full potential of the framework to create custom solutions that scale with your business growth.
+                    </p>
+                    
+                    <div class="flex items-center space-x-4">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-secondary-blue">150+</div>
+                            <div class="text-sm text-text-muted">Laravel Projects</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-secondary-blue">5+</div>
+                            <div class="text-sm text-text-muted">Years Experience</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-secondary-blue">24/7</div>
+                            <div class="text-sm text-text-muted">Support</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <div class="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-8 border border-blue-100">
+                        <h3 class="text-2xl font-bold text-primary-blue mb-4">Core Benefits</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-bolt text-secondary-blue"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-primary-blue">Rapid Development</h4>
+                                    <p class="text-text-muted text-sm">Laravel's elegant syntax and built-in features speed up development by 40%.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-shield-alt text-secondary-blue"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-primary-blue">Enterprise Security</h4>
+                                    <p class="text-text-muted text-sm">Built-in protection against SQL injection, XSS, CSRF, and other vulnerabilities.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-expand-arrows-alt text-secondary-blue"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-primary-blue">Scalability</h4>
+                                    <p class="text-text-muted text-sm">Handle millions of users with proper architecture and optimization.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-light-gray">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bricolage font-bold text-primary-blue mb-4">
+                    Laravel Development Services
+                </h2>
+                <p class="text-xl text-text-muted max-w-3xl mx-auto">
+                    Comprehensive Laravel solutions tailored to your specific requirements
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-gradient-to-r from-primary-blue to-secondary-blue rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-shopping-cart text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary-blue mb-3">E-commerce Solutions</h3>
+                    <p class="text-text-muted mb-4">
+                        Custom e-commerce platforms with payment integration, inventory management, and admin dashboards.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-sm text-text-muted">
+                            <i class="fas fa-check text-green-500 mr-2"></i> Multi-vendor support
+                        </li>
+                        <li class="flex items-center text-sm text-text-muted">
+                            <i class="fas fa-check text-green-500 mr-2"></i> Payment gateway integration
+                        </li>
+                        <li class="flex items-center text-sm text-text-muted">
+                            <i class="fas fa-check text-green-500 mr-2"></i> Order management system
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-gradient-to-r from-secondary-blue to-accent-orange rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-cloud text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary-blue mb-3">SaaS Development</h3>
+                    <p class="text-text-muted mb-4">
+                        Scalable SaaS applications with multi-tenancy, subscription billing, and user management.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-sm text-text-muted">
+                            <i class="fas fa-check text-green-500 mr-2"></i> Multi-tenant architecture
+                        </li>
+                        <li class="flex items-center text-sm text-text-muted">
+                            <i class="fas fa-check text-green-500 mr-2"></i> Subscription management
+                        </li>
+                        <li class="flex items-center text-sm text-text-muted">
+                            <i class="fas fa-check text-green-500 mr-2"></i> API development
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 bg-gradient-to-r from-accent-orange to-primary-blue rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary-blue mb-3">CRM & ERP Systems</h3>
+                    <p class="text-text-muted mb-4">
+                        Custom CRM and ERP solutions for business process automation and management.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-sm text-text-muted">
+                            <i class="fas fa-check text-green-500 mr-2"></i> Lead management
+                        </li>
+                        <li class="flex items-center text-sm text-text-muted">
+                            <i class="fas fa-check text-green-500 mr-2"></i> Inventory tracking
+                        </li>
+                        <li class="flex items-center text-sm text-text-muted">
+                            <i class="fas fa-check text-green-500 mr-2"></i> Reporting & analytics
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-14 h-14 bg-gradient-to-r from-primary-blue to-accent-orange rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-mobile-alt text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary-blue mb-3">API Development</h3>
+                    <p class="text-text-muted mb-4">
+                        RESTful and GraphQL APIs for mobile apps, third-party integrations, and microservices.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-sm text-text-muted">
+                            <i class="fas fa-check text-green-500 mr-2"></i> REST API development
+                        </li>
+                        <li class="flex items-center text-sm text-text-muted">
+                            <i class="fas fa-check text-green-500 mr-2"></i> API documentation
+                        </li>
+                        <li class="flex items-center text-sm text-text-muted">
+                            <i class="fas fa-check text-green-500 mr-2"></i> Third-party integration
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-14 h-14 bg-gradient-to-r from-secondary-blue to-primary-blue rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-sync-alt text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary-blue mb-3">Legacy System Migration</h3>
+                    <p class="text-text-muted mb-4">
+                        Migrate your outdated systems to modern Laravel applications with improved performance.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-sm text-text-muted">
+                            <i class="fas fa-check text-green-500 mr-2"></i> Codebase migration
+                        </li>
+                        <li class="flex items-center text-sm text-text-muted">
+                            <i class="fas fa-check text-green-500 mr-2"></i> Database migration
+                        </li>
+                        <li class="flex items-center text-sm text-text-muted">
+                            <i class="fas fa-check text-green-500 mr-2"></i> Data migration
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="w-14 h-14 bg-gradient-to-r from-accent-orange to-secondary-blue rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-tools text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary-blue mb-3">Maintenance & Support</h3>
+                    <p class="text-text-muted mb-4">
+                        Ongoing maintenance, updates, and technical support for your Laravel applications.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-sm text-text-muted">
+                            <i class="fas fa-check text-green-500 mr-2"></i> Bug fixes
+                        </li>
+                        <li class="flex items-center text-sm text-text-muted">
+                            <i class="fas fa-check text-green-500 mr-2"></i> Performance optimization
+                        </li>
+                        <li class="flex items-center text-sm text-text-muted">
+                            <i class="fas fa-check text-green-500 mr-2"></i> Security updates
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bricolage font-bold text-primary-blue mb-4">
+                    Laravel Technology Stack
+                </h2>
+                <p class="text-xl text-text-muted max-w-3xl mx-auto">
+                    We leverage the entire Laravel ecosystem and complementary technologies
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
+                <div class="tech-stack-item" data-aos="zoom-in">
+                    <i class="fab fa-laravel text-red-500 text-2xl mr-3"></i>
+                    <div>
+                        <div class="font-bold text-primary-blue">Laravel</div>
+                        <div class="text-xs text-text-muted">PHP Framework</div>
+                    </div>
+                </div>
+                <div class="tech-stack-item" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fas fa-database text-orange-500 text-2xl mr-3"></i>
+                    <div>
+                        <div class="font-bold text-primary-blue">MySQL</div>
+                        <div class="text-xs text-text-muted">Database</div>
+                    </div>
+                </div>
+                <div class="tech-stack-item" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fab fa-vuejs text-green-500 text-2xl mr-3"></i>
+                    <div>
+                        <div class="font-bold text-primary-blue">Vue.js</div>
+                        <div class="text-xs text-text-muted">Frontend</div>
+                    </div>
+                </div>
+                <div class="tech-stack-item" data-aos="zoom-in" data-aos-delay="300">
+                    <i class="fab fa-react text-blue-400 text-2xl mr-3"></i>
+                    <div>
+                        <div class="font-bold text-primary-blue">React.js</div>
+                        <div class="text-xs text-text-muted">Frontend</div>
+                    </div>
+                </div>
+                <div class="tech-stack-item" data-aos="zoom-in" data-aos-delay="400">
+                    <i class="fab fa-aws text-orange-600 text-2xl mr-3"></i>
+                    <div>
+                        <div class="font-bold text-primary-blue">AWS</div>
+                        <div class="text-xs text-text-muted">Cloud</div>
+                    </div>
+                </div>
+                <div class="tech-stack-item" data-aos="zoom-in" data-aos-delay="500">
+                    <i class="fab fa-docker text-blue-500 text-2xl mr-3"></i>
+                    <div>
+                        <div class="font-bold text-primary-blue">Docker</div>
+                        <div class="text-xs text-text-muted">Containerization</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-r from-primary-blue/5 to-secondary-blue/5 rounded-2xl p-8" data-aos="fade-up">
+                <h3 class="text-2xl font-bold text-primary-blue mb-4">Why Our Laravel Stack?</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-bold text-primary-blue mb-2">Latest Laravel Features</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-center text-text-muted">
+                                <i class="fas fa-check text-green-500 mr-2"></i> Laravel 10+ with all new features
+                            </li>
+                            <li class="flex items-center text-text-muted">
+                                <i class="fas fa-check text-green-500 mr-2"></i> Blade templating engine
+                            </li>
+                            <li class="flex items-center text-text-muted">
+                                <i class="fas fa-check text-green-500 mr-2"></i> Eloquent ORM
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-primary-blue mb-2">Performance Optimization</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-center text-text-muted">
+                                <i class="fas fa-check text-green-500 mr-2"></i> Redis caching implementation
+                            </li>
+                            <li class="flex items-center text-text-muted">
+                                <i class="fas fa-check text-green-500 mr-2"></i> Database query optimization
+                            </li>
+                            <li class="flex items-center text-text-muted">
+                                <i class="fas fa-check text-green-500 mr-2"></i> Code optimization techniques
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Development Process -->
+    <section class="py-20 bg-light-gray">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bricolage font-bold text-primary-blue mb-4">
+                    Our Laravel Development Process
+                </h2>
+                <p class="text-xl text-text-muted max-w-3xl mx-auto">
+                    A systematic approach to ensure quality and timely delivery
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="space-y-12">
+                    <!-- Step 1 -->
+                    <div class="process-step" data-aos="fade-right">
+                        <div class="step-number">01</div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="text-xl font-bold text-primary-blue mb-2">Requirement Analysis</h3>
+                            <p class="text-text-muted">We thoroughly analyze your business requirements, target audience, and project goals to create a detailed specification document.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="process-step" data-aos="fade-right" data-aos-delay="100">
+                        <div class="step-number">02</div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="text-xl font-bold text-primary-blue mb-2">UI/UX Design</h3>
+                            <p class="text-text-muted">Our designers create wireframes and prototypes using tools like Figma to visualize the final product before development begins.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div class="process-step" data-aos="fade-right" data-aos-delay="200">
+                        <div class="step-number">03</div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="text-xl font-bold text-primary-blue mb-2">Backend Development</h3>
+                            <p class="text-text-muted">Our Laravel developers build the core application logic, database structure, APIs, and implement business requirements.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 4 -->
+                    <div class="process-step" data-aos="fade-right" data-aos-delay="300">
+                        <div class="step-number">04</div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="text-xl font-bold text-primary-blue mb-2">Frontend Integration</h3>
+                            <p class="text-text-muted">We integrate Vue.js or React.js frontend with Laravel backend, ensuring seamless communication and optimal performance.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 5 -->
+                    <div class="process-step" data-aos="fade-right" data-aos-delay="400">
+                        <div class="step-number">05</div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="text-xl font-bold text-primary-blue mb-2">Testing & Quality Assurance</h3>
+                            <p class="text-text-muted">Rigorous testing including unit testing, integration testing, performance testing, and security testing to ensure quality.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 6 -->
+                    <div class="process-step" data-aos="fade-right" data-aos-delay="500">
+                        <div class="step-number">06</div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="text-xl font-bold text-primary-blue mb-2">Deployment & Support</h3>
+                            <p class="text-text-muted">We deploy the application to your preferred hosting environment and provide ongoing maintenance and support services.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Packages -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bricolage font-bold text-primary-blue mb-4">
+                    Laravel Development Packages
+                </h2>
+                <p class="text-xl text-text-muted max-w-3xl mx-auto">
+                    Flexible pricing options for different business needs
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Basic Package -->
+                <div class="package-card" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-2xl font-bold text-primary-blue mb-2">Basic</h3>
+                    <p class="text-text-muted mb-6">For startups and small businesses</p>
+                    
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-primary-blue">$2,499</span>
+                        <span class="text-text-muted">/ project</span>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Up to 10 pages</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Basic CMS Integration</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Contact Form</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Responsive Design</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>30 Days Support</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="contact.html" class="block w-full text-center py-3 bg-gray-100 text-primary-blue font-bold rounded-lg hover:bg-gray-200 transition">
+                        Get Started
+                    </a>
+                </div>
+                
+                <!-- Professional Package -->
+                <div class="package-card popular" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-2xl font-bold text-primary-blue mb-2">Professional</h3>
+                    <p class="text-text-muted mb-6">For growing businesses</p>
+                    
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-primary-blue">$4,999</span>
+                        <span class="text-text-muted">/ project</span>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Up to 25 pages</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Advanced CMS</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Payment Integration</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>User Authentication</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>3 Months Support</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="contact.html" class="block w-full text-center py-3 bg-gradient-to-r from-primary-blue to-secondary-blue text-white font-bold rounded-lg hover:shadow-lg transition">
+                        Get Started
+                    </a>
+                </div>
+                
+                <!-- Enterprise Package -->
+                <div class="package-card" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-2xl font-bold text-primary-blue mb-2">Enterprise</h3>
+                    <p class="text-text-muted mb-6">For large scale applications</p>
+                    
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-primary-blue">$9,999+</span>
+                        <span class="text-text-muted">/ project</span>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Unlimited Pages</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Custom SaaS Platform</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Multi-vendor System</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>API Development</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>6 Months Support</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="contact.html" class="block w-full text-center py-3 bg-gray-100 text-primary-blue font-bold rounded-lg hover:bg-gray-200 transition">
+                        Contact for Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-light-gray">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bricolage font-bold text-primary-blue mb-4">
+                    Frequently Asked Questions
+                </h2>
+                <p class="text-xl text-text-muted">
+                    Answers to common questions about Laravel development
+                </p>
+            </div>
+            
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        Why choose Laravel over other PHP frameworks?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Laravel offers elegant syntax, built-in features (authentication, routing, sessions), a robust ecosystem (Forge, Envoyer, Nova), and a large community. It follows MVC architecture and promotes best practices, making it ideal for scalable applications.
+                    </div>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="faq-question">
+                        How long does a typical Laravel project take?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Timeline depends on complexity: Simple applications (4-6 weeks), Medium complexity (8-12 weeks), Enterprise solutions (12-20+ weeks). We follow agile methodology with regular updates and deliverable milestones.
+                    </div>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="faq-question">
+                        Do you provide ongoing maintenance and support?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! We offer comprehensive maintenance packages including bug fixes, security updates, performance optimization, and feature enhancements. All packages include free support for specified periods.
+                    </div>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="faq-question">
+                        Can you work with our existing team?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Absolutely! We offer flexible collaboration models: complete project development, dedicated developers, or technical consultation. We seamlessly integrate with your existing workflow and tools.
+                    </div>
+                </div>
+                
+                <!-- FAQ 5 -->
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="faq-question">
+                        What about hosting and deployment?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We provide hosting recommendations (AWS, DigitalOcean, Laravel Forge) and handle deployment. We can also set up CI/CD pipelines, SSL certificates, and server optimization as part of our services.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-primary-blue to-secondary-blue text-white">
+        <div class="container mx-auto px-4 text-center">
+            <div data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bricolage font-bold mb-6">
+                    Ready to Build Your Laravel Application?
+                </h2>
+                <p class="text-xl mb-10 max-w-2xl mx-auto">
+                    Let's discuss your project requirements and create a customized solution for your business.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="contact.html" class="inline-flex items-center justify-center px-8 py-4 bg-white text-primary-blue font-bold rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                        <i class="fas fa-calendar-alt mr-3"></i> Schedule Free Consultation
+                    </a>
+                    <a href="tel:+8801XXXXXXXXX" class="inline-flex items-center justify-center px-8 py-4 bg-transparent border border-white/30 text-white font-bold rounded-xl hover:bg-white/10 transition">
+                        <i class="fas fa-phone mr-3"></i> Call Us Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-bg text-white pt-12 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-secondary-blue rounded-xl flex items-center justify-center">
+                            <i class="fas fa-code text-white"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bricolage font-bold">Plasic<span class="text-accent-orange">SaaS</span></h2>
+                            <p class="text-sm text-gray-400">by Projukti Plus</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6">
+                        Transforming ideas into exceptional digital experiences through cutting-edge web development.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-8 h-8 bg-gray-800 hover:bg-accent-orange rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 bg-gray-800 hover:bg-accent-orange rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 bg-gray-800 hover:bg-accent-orange rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="laravel.html" class="text-gray-400 hover:text-white text-sm transition">Laravel Development</a></li>
+                        <li><a href="vuejs.html" class="text-gray-400 hover:text-white text-sm transition">Vue.js Development</a></li>
+                        <li><a href="reactjs.html" class="text-gray-400 hover:text-white text-sm transition">React.js Development</a></li>
+                        <li><a href="wordpress.html" class="text-gray-400 hover:text-white text-sm transition">WordPress Development</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white text-sm transition">About Us</a></li>
+                        <li><a href="portfolio.html" class="text-gray-400 hover:text-white text-sm transition">Portfolio</a></li>
+                        <li><a href="careers.html" class="text-gray-400 hover:text-white text-sm transition">Careers</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-white text-sm transition">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Contact</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-accent-orange mt-1 mr-3"></i>
+                            <span class="text-gray-400 text-sm">Khulna, Bangladesh</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-accent-orange mr-3"></i>
+                            <span class="text-gray-400 text-sm">contact@projuktiplus.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-accent-orange mr-3"></i>
+                            <span class="text-gray-400 text-sm">+880 1XXX-XXXXXX</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-500 text-sm">
+                    © 2025 <span class="text-accent-orange">Projukti Plus</span>. All rights reserved. 
+                    <span class="block sm:inline">Lead Developer: <span class="text-white">Md. Nayemur Rahman</span></span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init({ duration: 1000, once: true, offset: 80 });
+        
+        $(document).ready(function(){
+            // Mobile Menu Toggle
+            $('#mobileMenuBtn').click(function() {
+                $('#mobileMenu').slideToggle(300);
+                $(this).find('i').toggleClass('fa-bars fa-times');
+            });
+            
+            // FAQ Toggle
+            $('.faq-question').click(function() {
+                const item = $(this).parent();
+                const answer = $(this).next();
+                
+                $('.faq-item').not(item).removeClass('active').find('.faq-answer').slideUp(300);
+                item.toggleClass('active');
+                answer.slideToggle(300);
+            });
+            
+            // Counter Animation
+            $('.counter').counterUp({ delay: 10, time: 1500 });
+        });
+    </script>
+</body>
+</html>
