@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laravel 11: New Features and Migration Guide | PlasicSaaS Blog</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Prism.js for code syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': '#1E3A8A',
+                        'secondary-blue': '#3B82F6',
+                        'accent-orange': '#F59E0B',
+                        'background': '#FFFFFF',
+                        'light-gray': '#F9FAFB',
+                        'text-dark': '#111827',
+                        'text-muted': '#6B7280',
+                        'dark-bg': '#0F172A',
+                    },
+                    fontFamily: {
+                        'bricolage': ['Bricolage Grotesque', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Styles */
+        body { font-family: 'Poppins', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Bricolage Grotesque', sans-serif; }
+        
+        /* Article Content Styling */
+        .article-content {
+            line-height: 1.8;
+            color: #374151;
+        }
+        
+        .article-content h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1E3A8A;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #E5E7EB;
+        }
+        
+        .article-content h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1E3A8A;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .article-content ul, .article-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .article-content blockquote {
+            border-left: 4px solid #3B82F6;
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: #6B7280;
+        }
+        
+        .article-content pre {
+            background: #1E293B;
+            color: #E2E8F0;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        
+        .article-content code {
+            background: #F3F4F6;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875em;
+        }
+        
+        .article-content img {
+            border-radius: 0.5rem;
+            margin: 2rem 0;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Table Styling */
+        .article-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+        
+        .article-content table th,
+        .article-content table td {
+            border: 1px solid #E5E7EB;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        
+        .article-content table th {
+            background: #F9FAFB;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        /* Share Buttons */
+        .share-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Table of Contents */
+        .toc-item {
+            padding: 0.75rem 1rem;
+            border-left: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .toc-item:hover, .toc-item.active {
+            border-left-color: #3B82F6;
+            background: #F3F4F6;
+        }
+        
+        /* Reading Progress Bar */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #E5E7EB;
+            z-index: 1000;
+        }
+        
+        .reading-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #3B82F6, #1E3A8A);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        /* Author Card */
+        .author-card {
+            background: linear-gradient(135deg, #F9FAFB 0%, #FFFFFF 100%);
+            border: 1px solid #E5E7EB;
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+        
+        /* Comment Section */
+        .comment-card {
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .comment-card:hover {
+            border-color: #3B82F6;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-text-dark">
+
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress">
+        <div class="reading-progress-bar" id="readingProgress"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-lg py-4 transition-all duration-300">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex items-center space-x-3 group">
+                    <div class="w-12 h-12 bg-gradient-to-r from-primary-blue to-secondary-blue rounded-2xl flex items-center justify-center transition-transform group-hover:rotate-12 duration-300 shadow-md group-hover:shadow-lg">
+                        <i class="fas fa-code text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bricolage font-bold text-primary-blue tracking-tight">Plasic<span class="text-accent-orange">SaaS</span></h1>
+                        <p class="text-xs text-text-muted hidden sm:block font-medium">by Projukti Plus</p>
+                    </div>
+                </a>
+                
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="text-text-dark hover:text-secondary-blue font-medium transition nav-link">Home</a>
+                    <a href="services.html" class="text-text-dark hover:text-secondary-blue font-medium transition nav-link">Services</a>
+                    <a href="portfolio.html" class="text-text-dark hover:text-secondary-blue font-medium transition nav-link">Portfolio</a>
+                    <a href="blog.html" class="text-secondary-blue font-medium border-b-2 border-secondary-blue pb-1">Blog</a>
+                    <a href="about.html" class="text-text-dark hover:text-secondary-blue font-medium transition nav-link">About</a>
+                    <a href="contact.html" class="text-text-dark hover:text-secondary-blue font-medium transition nav-link">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="contact.html" class="hidden md:inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary-blue to-secondary-blue text-white font-medium rounded-xl hover:shadow-xl transition-all duration-300 shadow-lg transform hover:-translate-y-1 hover:scale-105">
+                        <i class="fas fa-rocket mr-2"></i> Start Project
+                    </a>
+                    <button id="mobileMenuBtn" class="lg:hidden text-text-dark text-2xl hover:text-secondary-blue transition">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div id="mobileMenu" class="hidden lg:hidden mt-6 pb-4 border-t border-gray-200 pt-6">
+                <div class="flex flex-col space-y-4">
+                    <a href="index.html" class="text-text-dark font-medium p-2 hover:text-secondary-blue hover:bg-primary-blue/5 rounded-lg transition">Home</a>
+                    <a href="services.html" class="text-text-dark font-medium p-2 hover:text-secondary-blue hover:bg-primary-blue/5 rounded-lg transition">Services</a>
+                    <a href="portfolio.html" class="text-text-dark font-medium p-2 hover:text-secondary-blue hover:bg-primary-blue/5 rounded-lg transition">Portfolio</a>
+                    <a href="blog.html" class="text-secondary-blue font-medium p-2 bg-blue-50 rounded-lg">Blog</a>
+                    <a href="about.html" class="text-text-dark font-medium p-2 hover:text-secondary-blue hover:bg-primary-blue/5 rounded-lg transition">About</a>
+                    <a href="contact.html" class="text-text-dark font-medium p-2 hover:text-secondary-blue hover:bg-primary-blue/5 rounded-lg transition">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <section class="py-16 bg-light-gray">
+        <div class="container mx-auto px-4">
+            <div class="mx-auto">
+                <!-- Breadcrumb -->
+                <div class="flex items-center space-x-2 text-sm text-text-muted mb-6">
+                    <a href="index.html" class="hover:text-secondary-blue transition">Home</a>
+                    <i class="fas fa-chevron-right text-xs"></i>
+                    <a href="blog.html" class="hover:text-secondary-blue transition">Blog</a>
+                    <i class="fas fa-chevron-right text-xs"></i>
+                    <a href="category.html" class="hover:text-secondary-blue transition">Laravel</a>
+                    <i class="fas fa-chevron-right text-xs"></i>
+                    <span class="text-primary-blue">Current Article</span>
+                </div>
+                
+                <!-- Article Meta -->
+                <div class="flex flex-wrap items-center justify-between mb-8">
+                    <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                        <a href="category.html" class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium hover:bg-blue-200 transition">
+                            Laravel
+                        </a>
+                        <span class="text-text-muted">•</span>
+                        <span class="text-text-muted">10 min read</span>
+                        <span class="text-text-muted">•</span>
+                        <span class="text-text-muted">Mar 15, 2025</span>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-eye text-text-muted mr-2"></i>
+                            <span class="text-text-muted">2.5K views</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-comment text-text-muted mr-2"></i>
+                            <span class="text-text-muted">24 comments</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Article Title -->
+                <h1 class="text-4xl md:text-5xl font-bricolage font-bold text-primary-blue mb-6">
+                    Laravel 11: New Features and Migration Guide
+                </h1>
+                
+                <!-- Article Subtitle -->
+                <p class="text-xl text-text-muted mb-8">
+                    Explore the latest features in Laravel 11 and learn how to migrate your existing applications with our step-by-step guide.
+                </p>
+                
+                <!-- Author Info -->
+                <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                             alt="Author" 
+                             class="w-12 h-12 rounded-full border-2 border-white shadow-lg mr-4">
+                        <div>
+                            <div class="font-bold text-primary-blue">John Doe</div>
+                            <div class="text-sm text-text-muted">Senior Laravel Developer • 8 min read</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center space-x-3">
+                        <button class="share-btn bg-gray-100 text-gray-600 hover:bg-gray-200">
+                            <i class="fab fa-twitter"></i>
+                        </button>
+                        <button class="share-btn bg-gray-100 text-gray-600 hover:bg-gray-200">
+                            <i class="fab fa-linkedin-in"></i>
+                        </button>
+                        <button class="share-btn bg-gray-100 text-gray-600 hover:bg-gray-200">
+                            <i class="fas fa-link"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Featured Image -->
+                <div class="rounded-xl overflow-hidden mb-8 shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                         alt="Laravel 11" 
+                         class="w-full h-96 object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-3 gap-12">
+                <!-- Main Content -->
+                <div class="lg:col-span-2">
+                    <div class="article-content" id="articleContent">
+                        <!-- Table of Contents -->
+                        <div class="bg-light-gray border-l-4 border-secondary-blue p-6 rounded-lg mb-8">
+                            <h3 class="text-xl font-bold text-primary-blue mb-4">
+                                <i class="fas fa-list-ul mr-2"></i> Table of Contents
+                            </h3>
+                            <nav class="space-y-2">
+                                <a href="#introduction" class="toc-item block hover:text-secondary-blue">Introduction to Laravel 11</a>
+                                <a href="#new-features" class="toc-item block hover:text-secondary-blue">New Features Overview</a>
+                                <a href="#migration-steps" class="toc-item block hover:text-secondary-blue">Migration Step-by-Step</a>
+                                <a href="#breaking-changes" class="toc-item block hover:text-secondary-blue">Breaking Changes</a>
+                                <a href="#best-practices" class="toc-item block hover:text-secondary-blue">Best Practices</a>
+                                <a href="#conclusion" class="toc-item block hover:text-secondary-blue">Conclusion</a>
+                            </nav>
+                        </div>
+                        
+                        <!-- Introduction -->
+                        <h2 id="introduction">Introduction to Laravel 11</h2>
+                        <p>
+                            Laravel 11 represents a significant milestone in the evolution of the PHP framework, introducing cutting-edge features while maintaining the elegant syntax and developer experience that Laravel is known for. This release focuses on performance improvements, developer productivity, and modern PHP practices.
+                        </p>
+                        <p>
+                            In this comprehensive guide, we'll explore the major changes in Laravel 11, provide a step-by-step migration guide for existing applications, and share best practices for taking full advantage of the new features.
+                        </p>
+                        
+                        <!-- New Features -->
+                        <h2 id="new-features">New Features Overview</h2>
+                        <h3>1. Improved Performance</h3>
+                        <p>
+                            Laravel 11 introduces several performance optimizations that make applications faster out of the box. The framework now uses OPcache more efficiently and includes optimized service container resolution.
+                        </p>
+                        
+                        <pre><code class="language-php">
+// Example of new caching configuration
+'cache' => [
+    'default' => env('CACHE_DRIVER', 'redis'),
+    'stores' => [
+        'redis' => [
+            'driver' => 'redis',
+            'connection' => 'cache',
+            'lock_connection' => 'default',
+        ],
+    ],
+    'prefix' => env('CACHE_PREFIX', 'laravel_cache'),
+],
+                        </code></pre>
+                        
+                        <h3>2. Enhanced Eloquent ORM</h3>
+                        <p>
+                            The Eloquent ORM now includes several new features including:
+                        </p>
+                        <ul>
+                            <li><strong>Lazy Collections:</strong> Process large datasets without memory issues</li>
+                            <li><strong>Enhanced Relationships:</strong> Improved performance for complex relationships</li>
+                            <li><strong>New Query Builder Methods:</strong> Additional helper methods for common queries</li>
+                        </ul>
+                        
+                        <!-- Migration Steps -->
+                        <h2 id="migration-steps">Migration Step-by-Step</h2>
+                        <h3>Step 1: Update Dependencies</h3>
+                        <p>
+                            Update your <code>composer.json</code> file to require Laravel 11:
+                        </p>
+                        
+                        <pre><code class="language-json">
+{
+    "require": {
+        "php": "^8.2",
+        "laravel/framework": "^11.0",
+        "laravel/sanctum": "^4.0"
+    }
+}
+                        </code></pre>
+                        
+                        <h3>Step 2: Update Configuration Files</h3>
+                        <p>
+                            Laravel 11 introduces a new configuration structure. Run the migration command:
+                        </p>
+                        
+                        <pre><code class="language-bash">
+php artisan config:migrate
+                        </code></pre>
+                        
+                        <!-- Table Example -->
+                        <h3>Migration Timeline</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Task</th>
+                                    <th>Time Required</th>
+                                    <th>Difficulty</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Update Dependencies</td>
+                                    <td>15-30 minutes</td>
+                                    <td>Easy</td>
+                                </tr>
+                                <tr>
+                                    <td>Configuration Updates</td>
+                                    <td>1-2 hours</td>
+                                    <td>Medium</td>
+                                </tr>
+                                <tr>
+                                    <td>Testing & Debugging</td>
+                                    <td>2-4 hours</td>
+                                    <td>Hard</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <!-- Blockquote -->
+                        <blockquote>
+                            <p>
+                                "Laravel 11's performance improvements are substantial. Our application saw a 40% reduction in response time after migration."
+                            </p>
+                            <cite>- Senior Developer, Tech Company</cite>
+                        </blockquote>
+                        
+                        <!-- Breaking Changes -->
+                        <h2 id="breaking-changes">Breaking Changes</h2>
+                        <p>
+                            Be aware of these breaking changes when migrating:
+                        </p>
+                        <ol>
+                            <li>Minimum PHP version is now 8.2</li>
+                            <li>Removed deprecated methods and classes</li>
+                            <li>Updated validation rule syntax</li>
+                            <li>Changed default configuration structure</li>
+                        </ol>
+                        
+                        <!-- Best Practices -->
+                        <h2 id="best-practices">Best Practices</h2>
+                        <p>
+                            Follow these best practices for a smooth migration:
+                        </p>
+                        
+                        <div class="bg-green-50 border-l-4 border-green-500 p-6 rounded-lg my-6">
+                            <h4 class="font-bold text-green-800 mb-2">
+                                <i class="fas fa-lightbulb mr-2"></i> Pro Tip
+                            </h4>
+                            <p class="text-green-700">
+                                Always run your test suite after each migration step to catch issues early.
+                            </p>
+                        </div>
+                        
+                        <!-- Conclusion -->
+                        <h2 id="conclusion">Conclusion</h2>
+                        <p>
+                            Laravel 11 brings significant improvements that make it worth the migration effort. The performance gains, new features, and improved developer experience will benefit your applications in the long run.
+                        </p>
+                        <p>
+                            Start your migration today and join the growing community of developers benefiting from Laravel 11's advancements.
+                        </p>
+                        
+                        <!-- Tags -->
+                        <div class="flex flex-wrap items-center gap-2 mt-12 pt-8 border-t border-gray-200">
+                            <span class="font-medium text-primary-blue">Tags:</span>
+                            <a href="tag.html" class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition">Laravel</a>
+                            <a href="tag.html" class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition">PHP</a>
+                            <a href="tag.html" class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition">Web Development</a>
+                            <a href="tag.html" class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition">Backend</a>
+                            <a href="tag.html" class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition">Framework</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Share Section -->
+                    <div class="flex flex-col sm:flex-row items-center justify-between p-6 bg-light-gray rounded-lg mt-12">
+                        <div class="mb-4 sm:mb-0">
+                            <h3 class="text-lg font-bold text-primary-blue">Found this article helpful?</h3>
+                            <p class="text-text-muted">Share it with fellow developers</p>
+                        </div>
+                        <div class="flex space-x-3">
+                            <button class="share-btn bg-blue-500 text-white hover:bg-blue-600">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+                            <button class="share-btn bg-blue-700 text-white hover:bg-blue-800">
+                                <i class="fab fa-linkedin-in"></i>
+                            </button>
+                            <button class="share-btn bg-red-500 text-white hover:bg-red-600">
+                                <i class="fab fa-youtube"></i>
+                            </button>
+                            <button class="share-btn bg-gray-800 text-white hover:bg-gray-900">
+                                <i class="fab fa-github"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Author Bio -->
+                    <div class="author-card mt-12">
+                        <div class="flex flex-col md:flex-row items-center md:items-start">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+                                 alt="Author" 
+                                 class="w-24 h-24 rounded-full border-4 border-white shadow-lg mb-4 md:mb-0 md:mr-6">
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary-blue mb-2">About John Doe</h3>
+                                <p class="text-text-muted mb-4">
+                                    John is a Senior Laravel Developer with 8+ years of experience building scalable web applications. He specializes in backend architecture, API development, and performance optimization. John regularly contributes to open-source projects and shares his knowledge through technical blogging.
+                                </p>
+                                <div class="flex space-x-3">
+                                    <a href="#" class="text-secondary-blue hover:text-primary-blue">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#" class="text-secondary-blue hover:text-primary-blue">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                    <a href="#" class="text-secondary-blue hover:text-primary-blue">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="#" class="text-secondary-blue hover:text-primary-blue">
+                                        <i class="fas fa-globe"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Comments Section -->
+                    <div class="mt-12">
+                        <h3 class="text-2xl font-bold text-primary-blue mb-6">
+                            <i class="fas fa-comments mr-2"></i> Comments (24)
+                        </h3>
+                        
+                        <!-- Comment Form -->
+                        <div class="bg-light-gray rounded-lg p-6 mb-8">
+                            <h4 class="text-lg font-bold text-primary-blue mb-4">Leave a Comment</h4>
+                            <form class="space-y-4">
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <input type="text" 
+                                           placeholder="Your Name" 
+                                           class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent">
+                                    <input type="email" 
+                                           placeholder="Your Email" 
+                                           class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent">
+                                </div>
+                                <textarea 
+                                    placeholder="Your Comment" 
+                                    rows="4" 
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent"></textarea>
+                                <button type="submit" class="px-6 py-3 bg-primary-blue text-white font-bold rounded-lg hover:bg-secondary-blue transition">
+                                    Post Comment
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <!-- Comments List -->
+                        <div class="space-y-6">
+                            <!-- Comment 1 -->
+                            <div class="comment-card">
+                                <div class="flex items-start mb-4">
+                                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                         alt="Commenter" 
+                                         class="w-10 h-10 rounded-full mr-3">
+                                    <div>
+                                        <div class="font-bold text-primary-blue">Sarah Miller</div>
+                                        <div class="text-sm text-text-muted">2 hours ago</div>
+                                    </div>
+                                </div>
+                                <p class="text-text-muted mb-3">
+                                    Great article! The migration guide was very helpful. One question: Does Laravel 11 support PHP 8.3 features?
+                                </p>
+                                <div class="flex items-center space-x-4">
+                                    <button class="text-sm text-text-muted hover:text-secondary-blue transition">
+                                        <i class="fas fa-reply mr-1"></i> Reply
+                                    </button>
+                                    <button class="text-sm text-text-muted hover:text-secondary-blue transition">
+                                        <i class="fas fa-thumbs-up mr-1"></i> 12
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Comment 2 -->
+                            <div class="comment-card ml-8">
+                                <div class="flex items-start mb-4">
+                                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                         alt="Commenter" 
+                                         class="w-10 h-10 rounded-full mr-3">
+                                    <div>
+                                        <div class="font-bold text-primary-blue">David Wilson (Author)</div>
+                                        <div class="text-sm text-text-muted">1 hour ago</div>
+                                    </div>
+                                </div>
+                                <p class="text-text-muted mb-3">
+                                    @Sarah Miller - Yes, Laravel 11 fully supports PHP 8.3 including new features like typed class constants and the json_validate() function.
+                                </p>
+                                <div class="flex items-center space-x-4">
+                                    <button class="text-sm text-text-muted hover:text-secondary-blue transition">
+                                        <i class="fas fa-reply mr-1"></i> Reply
+                                    </button>
+                                    <button class="text-sm text-text-muted hover:text-secondary-blue transition">
+                                        <i class="fas fa-thumbs-up mr-1"></i> 8
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sidebar -->
+                <div class="space-y-8">
+                    <!-- Table of Contents Sticky -->
+                    <div class="sticky top-24">
+                        <!-- Related Articles -->
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 mb-8 shadow-sm">
+                            <h3 class="text-xl font-bold text-primary-blue mb-4">
+                                <i class="fas fa-bookmark mr-2"></i> Related Articles
+                            </h3>
+                            <div class="space-y-4">
+                                <a href="blog-single.html" class="flex items-center hover:text-secondary-blue transition">
+                                    <div class="w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden mr-4">
+                                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                             alt="Related" 
+                                             class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-sm line-clamp-2">Vue.js 3 Composition API Best Practices</div>
+                                        <div class="text-xs text-text-muted mt-1">Mar 10, 2025</div>
+                                    </div>
+                                </a>
+                                <a href="blog-single.html" class="flex items-center hover:text-secondary-blue transition">
+                                    <div class="w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden mr-4">
+                                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                             alt="Related" 
+                                             class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-sm line-clamp-2">Building Scalable APIs with Laravel</div>
+                                        <div class="text-xs text-text-muted mt-1">Mar 5, 2025</div>
+                                    </div>
+                                </a>
+                                <a href="blog-single.html" class="flex items-center hover:text-secondary-blue transition">
+                                    <div class="w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden mr-4">
+                                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                             alt="Related" 
+                                             class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-sm line-clamp-2">Database Optimization Techniques</div>
+                                        <div class="text-xs text-text-muted mt-1">Feb 28, 2025</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Newsletter -->
+                        <div class="bg-gradient-to-r from-primary-blue to-secondary-blue rounded-lg p-6 text-white">
+                            <h3 class="text-xl font-bold mb-4">Subscribe to Newsletter</h3>
+                            <p class="text-white/90 text-sm mb-4">
+                                Get the latest web development articles directly in your inbox.
+                            </p>
+                            <form class="space-y-3">
+                                <input type="email" 
+                                       placeholder="Your email address" 
+                                       class="w-full px-4 py-2 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50">
+                                <button type="submit" class="w-full px-4 py-2 bg-white text-primary-blue font-bold rounded-lg hover:bg-gray-100 transition">
+                                    Subscribe
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <!-- Popular Tags -->
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 mt-8">
+                            <h3 class="text-xl font-bold text-primary-blue mb-4">
+                                <i class="fas fa-tags mr-2"></i> Popular Tags
+                            </h3>
+                            <div class="flex flex-wrap gap-2">
+                                <a href="tag.html" class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition">Laravel</a>
+                                <a href="tag.html" class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition">Vue.js</a>
+                                <a href="tag.html" class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition">React</a>
+                                <a href="tag.html" class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition">SaaS</a>
+                                <a href="tag.html" class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition">API</a>
+                                <a href="tag.html" class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition">Security</a>
+                                <a href="tag.html" class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition">Performance</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Articles -->
+    <section class="py-16 bg-light-gray">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bricolage font-bold text-primary-blue mb-4">
+                    You Might Also Like
+                </h2>
+                <p class="text-xl text-text-muted max-w-2xl mx-auto">
+                    More articles on web development and modern technologies
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Related Article 1 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow" data-aos="zoom-in">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Related" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+                                Vue.js
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary-blue mb-3 hover:text-secondary-blue transition">
+                            <a href="blog-single.html">Vue.js 3 Composition API: Complete Guide</a>
+                        </h3>
+                        <p class="text-text-muted mb-4">
+                            Master the Composition API with practical examples and best practices.
+                        </p>
+                        <div class="flex items-center text-sm text-text-muted">
+                            <span>Mar 10, 2025</span>
+                            <span class="mx-2">•</span>
+                            <span>8 min read</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Related Article 2 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Related" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">
+                                SaaS
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary-blue mb-3 hover:text-secondary-blue transition">
+                            <a href="blog-single.html">Building Multi-tenant SaaS Applications</a>
+                        </h3>
+                        <p class="text-text-muted mb-4">
+                            Architecture patterns and best practices for scalable multi-tenant systems.
+                        </p>
+                        <div class="flex items-center text-sm text-text-muted">
+                            <span>Mar 5, 2025</span>
+                            <span class="mx-2">•</span>
+                            <span>12 min read</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Related Article 3 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Related" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">
+                                Security
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary-blue mb-3 hover:text-secondary-blue transition">
+                            <a href="blog-single.html">Web Application Security Best Practices</a>
+                        </h3>
+                        <p class="text-text-muted mb-4">
+                            Protect your applications from common security threats and vulnerabilities.
+                        </p>
+                        <div class="flex items-center text-sm text-text-muted">
+                            <span>Feb 28, 2025</span>
+                            <span class="mx-2">•</span>
+                            <span>15 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-primary-blue to-secondary-blue text-white">
+        <div class="container mx-auto px-4 text-center">
+            <div data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bricolage font-bold mb-6">
+                    Ready to Build Something Amazing?
+                </h2>
+                <p class="text-xl mb-10 max-w-2xl mx-auto">
+                    Let's discuss your project and create a custom web solution that drives your business forward.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="contact.html" class="inline-flex items-center justify-center px-8 py-4 bg-white text-primary-blue font-bold rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                        <i class="fas fa-calendar-alt mr-3"></i> Schedule Consultation
+                    </a>
+                    <a href="portfolio.html" class="inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-primary-blue transition">
+                        <i class="fas fa-briefcase mr-3"></i> View Our Work
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-bg text-white pt-20 pb-10 relative overflow-hidden">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 bg-secondary-blue rounded-2xl flex items-center justify-center shadow-lg hover:rotate-12 transition-transform"><i class="fas fa-code text-white text-xl"></i></div>
+                        <div><h2 class="text-2xl font-bricolage font-bold">Plasic<span class="text-accent-orange">SaaS</span></h2><p class="text-sm text-gray-300">by Projukti Plus</p></div>
+                    </div>
+                    <p class="text-gray-300 mb-6">Transforming ideas into exceptional digital experiences through cutting-edge web development from Khulna, Bangladesh.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-accent-orange rounded-full flex items-center justify-center transition-all hover:-translate-y-1 hover:scale-110"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-accent-orange rounded-full flex items-center justify-center transition-all hover:-translate-y-1 hover:scale-110"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-accent-orange rounded-full flex items-center justify-center transition-all hover:-translate-y-1 hover:scale-110"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-6 border-b-2 border-accent-orange inline-block pb-1">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white transition-all hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-0 group-hover:opacity-100"></i> Home</a></li>
+                        <li><a href="services.html" class="text-gray-300 hover:text-white transition-all hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-0 group-hover:opacity-100"></i> Services</a></li>
+                        <li><a href="portfolio.html" class="text-gray-300 hover:text-white transition-all hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-0 group-hover:opacity-100"></i> Portfolio</a></li>
+                        <li><a href="blog.html" class="text-gray-300 hover:text-white transition-all hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-0 group-hover:opacity-100"></i> Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-6 border-b-2 border-accent-orange inline-block pb-1">Blog Categories</h3>
+                    <ul class="space-y-3">
+                        <li><a href="category.html" class="text-gray-300 hover:text-white transition-all hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-0 group-hover:opacity-100"></i> Laravel Development</a></li>
+                        <li><a href="category.html" class="text-gray-300 hover:text-white transition-all hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-0 group-hover:opacity-100"></i> Vue.js Tutorials</a></li>
+                        <li><a href="category.html" class="text-gray-300 hover:text-white transition-all hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-0 group-hover:opacity-100"></i> SaaS Development</a></li>
+                        <li><a href="category.html" class="text-gray-300 hover:text-white transition-all hover:pl-2 duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-0 group-hover:opacity-100"></i> Web Security</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-6 border-b-2 border-accent-orange inline-block pb-1">Contact Info</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start group"><i class="fas fa-map-marker-alt text-accent-orange mt-1 mr-3 group-hover:animate-bounce"></i><span class="text-gray-300 group-hover:text-white transition">Khulna, Bangladesh</span></li>
+                        <li class="flex items-center group"><i class="fas fa-envelope text-accent-orange mr-3 group-hover:animate-bounce"></i><span class="text-gray-300 group-hover:text-white transition">contact@projuktiplus.com</span></li>
+                        <li class="flex items-center group"><i class="fas fa-phone text-accent-orange mr-3 group-hover:animate-bounce"></i><span class="text-gray-300 group-hover:text-white transition">+880 1XXX-XXXXXX</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 text-center">
+                <p class="text-gray-400 text-sm">© 2025 <span class="text-accent-orange font-bold">Projukti Plus</span>. All rights reserved. Lead Developer: <span class="text-white">Md. Nayemur Rahman</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init({ duration: 1000, once: true, offset: 80 });
+        
+        $(document).ready(function(){
+            // Mobile Menu Toggle
+            $('#mobileMenuBtn').click(function() {
+                $('#mobileMenu').slideToggle(300);
+                $(this).find('i').toggleClass('fa-bars fa-times');
+            });
+            
+            // Reading Progress Bar
+            $(window).scroll(function() {
+                const windowHeight = $(window).height();
+                const documentHeight = $(document).height();
+                const scrollTop = $(window).scrollTop();
+                const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+                $('#readingProgress').css('width', scrollPercent + '%');
+            });
+            
+            // Table of Contents Highlighting
+            $(window).scroll(function() {
+                const scrollPosition = $(window).scrollTop() + 100;
+                
+                $('h2').each(function() {
+                    const target = $(this).offset().top;
+                    const id = $(this).attr('id');
+                    
+                    if (target <= scrollPosition) {
+                        $('.toc-item').removeClass('active');
+                        $(`.toc-item[href="#${id}"]`).addClass('active');
+                    }
+                });
+            });
+            
+            // Copy Code Button
+            $('pre').each(function() {
+                const $pre = $(this);
+                const $button = $('<button class="absolute top-2 right-2 px-3 py-1 bg-gray-800 text-white text-sm rounded opacity-0 group-hover:opacity-100 transition-opacity"><i class="fas fa-copy mr-1"></i> Copy</button>');
+                $pre.wrap('<div class="relative group"></div>');
+                $pre.after($button);
+                
+                $button.click(function() {
+                    const code = $pre.find('code').text();
+                    navigator.clipboard.writeText(code).then(() => {
+                        $button.html('<i class="fas fa-check mr-1"></i> Copied!');
+                        setTimeout(() => {
+                            $button.html('<i class="fas fa-copy mr-1"></i> Copy');
+                        }, 2000);
+                    });
+                });
+            });
+            
+            // Smooth Scroll for Table of Contents
+            $('.toc-item').click(function(e) {
+                e.preventDefault();
+                const targetId = $(this).attr('href');
+                const targetElement = $(targetId);
+                if (targetElement.length) {
+                    $('html, body').animate({
+                        scrollTop: targetElement.offset().top - 80
+                    }, 800);
+                }
+            });
+            
+            // Initialize Prism.js for code highlighting
+            Prism.highlightAll();
+        });
+    </script>
+</body>
+</html>
